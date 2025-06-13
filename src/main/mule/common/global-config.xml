@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule
+<mule xmlns:mongo="http://www.mulesoft.org/schema/mule/mongo"
 	xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit"
 	xmlns:http="http://www.mulesoft.org/schema/mule/http"
 	xmlns:mongodb="http://www.mulesoft.org/schema/mule/mongodb"
@@ -12,7 +12,8 @@
 http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd 
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd
-http://www.mulesoft.org/schema/mule/mongodb http://www.mulesoft.org/schema/mule/mongodb/current/mule-mongodb.xsd">
+http://www.mulesoft.org/schema/mule/mongodb http://www.mulesoft.org/schema/mule/mongodb/current/mule-mongodb.xsd
+http://www.mulesoft.org/schema/mule/mongo http://www.mulesoft.org/schema/mule/mongo/current/mule-mongo.xsd">
 	<secure-properties:config
 		name="Secure_Properties_Config" doc:name="Secure Properties Config"
 		doc:id="74bea5bd-e298-4530-8459-dc624467e340"
@@ -34,4 +35,10 @@ http://www.mulesoft.org/schema/mule/mongodb http://www.mulesoft.org/schema/mule/
 		api="resource::19504067-e1e3-45dd-943a-e163098ddbed:sys-mongodb-api:1.0.4:raml:zip:sys-mongodb-api.raml"
 		outboundHeadersMapName="outboundHeaders"
 		httpStatusVarName="httpStatus" />
+	<mongo:config name="MongoDB_Config"
+		doc:name="MongoDB Config"
+		doc:id="18845509-f0aa-408d-95ca-2a8f3607155b">
+		<mongo:connection-string-connection
+			connectionString="${mongodb.connection.string}" />
+	</mongo:config>
 </mule>
