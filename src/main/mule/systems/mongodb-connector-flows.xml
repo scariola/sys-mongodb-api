@@ -10,112 +10,18 @@
 http://www.mulesoft.org/schema/mule/mongodb http://www.mulesoft.org/schema/mule/mongodb/current/mule-mongodb.xsd
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
 http://www.mulesoft.org/schema/mule/mongo http://www.mulesoft.org/schema/mule/mongo/current/mule-mongo.xsd">
-	<flow name="mongodb-connector-flowsFlow"
-		doc:id="66e823e6-5e90-4721-bb69-a8f231d80e50">
-		<ee:transform doc:name="Transform Message"
-			doc:id="d9c03a39-8341-492b-8812-643c11e83741">
-			<ee:message>
-				<ee:set-payload><![CDATA[%dw 2.0
-output application/json
----
-{
-	"msisdn": attributes.uriParams.'msisdn'
-}]]></ee:set-payload>
-			</ee:message>
-		</ee:transform>
-		<set-variable value="MSISDN" doc:name="Set Variable" doc:id="7845be46-fc6e-4f76-953e-e982e2643602" variableName="collection"/>
-		<mongo:find-documents doc:name="Find documents"
-			doc:id="0a634c9c-ddf0-4488-a930-0142913b94ef"
-			config-ref="MongoDB_Config" collectionName="#[vars.collection]"
-			fields='eligible, msisdn'>
-			<mongo:query><![CDATA[#[payload]]]></mongo:query>
+	<sub-flow name="find-msisdn-whitelist-subflow" doc:id="d4e6eb00-d95d-4db4-92da-a42acc1291d6" >
+		<logger level="INFO" doc:name="START - MSISDN MongoDB Lookup" doc:id="2a241ee2-195a-4b4a-882a-0b003af9b5f6" message="START - MSISDN Lookup: Find Document"/>
+		<mongo:find-documents doc:name="Find MSISDN Whitelist" doc:id="1bd03298-99d6-4afc-b444-2900b3687252" config-ref="MongoDB_Config" collectionName="#[vars.collection.collection]" fields="eligible, msisdn">
+			<mongo:query><![CDATA[#[vars.msisdn]]]></mongo:query>
 		</mongo:find-documents>
-		<choice doc:name="Choice" doc:id="32d1aa8c-38df-4078-8d67-17c9fc7f2729" >
-			<when expression="#[sizeOf(payload) &gt; 0]">
-				<ee:transform doc:name="Transform Message" doc:id="449dc8c2-7f64-446d-9b9f-85d5cbcaedf9">
-			<ee:message>
-				<ee:set-payload><![CDATA[%dw 2.0
-output application/json
-var result = payload[0]
----
-{
-  "x-event-code": 1005,
-  "x-event-msg": "Success",
-  "results": {
-      "msisdn": result.msisdn,
-      "eligible": result.eligible
-  }
-}]]></ee:set-payload>
-			</ee:message>
-		</ee:transform>
-			</when>
-			<otherwise>
-				<ee:transform doc:name="Transform Message" doc:id="0a549dc2-f84e-474d-b113-d1b60c30bcc0" >
-					<ee:message >
-						<ee:set-payload ><![CDATA[%dw 2.0
-output application/json
-
----
-{
-  "x-event-code": 4000,
-  "x-event-msg": "No Record Found",
-}]]></ee:set-payload>
-					</ee:message>
-					<ee:variables >
-						<ee:set-variable variableName="httpStatus" ><![CDATA[404]]></ee:set-variable>
-					</ee:variables>
-				</ee:transform>
-			</otherwise>
-		</choice>
-	</flow>
-	<flow name="mongodb-connector-flowsFlow1" doc:id="2053e1b4-3895-4310-acdd-765089342f1f" >
-		<ee:transform doc:name="Transform Message" doc:id="c82ba0f4-0566-471d-805f-3224e562feec" >
-			<ee:message >
-				<ee:set-payload ><![CDATA[%dw 2.0
-output application/json
----
-{
-	"msisdn": attributes.uriParams.'msisdn'
-}]]></ee:set-payload>
-			</ee:message>
-		</ee:transform>
-		<set-variable value="MSISDN" doc:name="Set Variable" doc:id="9555d68e-985e-4607-bcb3-c53316bb7a46" variableName="collection" />
-		<mongo:remove-documents doc:name="Remove documents" doc:id="b495216b-8555-4ec8-b625-d50108946d4b" config-ref="MongoDB_Config" collectionName="#[vars.collection]">
-			<mongo:query ><![CDATA[#[payload]]]></mongo:query>
+		<logger level="INFO" doc:name="END - MSISDN MongoDB Lookup" doc:id="b16b97c0-e99d-4e17-b552-6fb8942f2f1b" message="END - MSISDN MongoDB Lookup: Retrived"/>
+	</sub-flow>
+	<sub-flow name="remove-msisdn-whitelist" doc:id="b8356714-61c8-4687-8885-60d7d507b14a">
+		<logger level="INFO" doc:name="START - Remove MSISDN Whitelist" doc:id="81fd2b20-a122-4ac9-b08d-08b116aa3dc7" message="START - Remove MSISDN Whitelist: Remove document" />
+		<mongo:remove-documents doc:name="Remove MSISDN Whitelist" doc:id="63fe7140-0eea-46b4-99ce-1848b41f1893" config-ref="MongoDB_Config" collectionName="#[vars.collection.collection]">
+			<mongo:query><![CDATA[#[vars.msisdn]]]></mongo:query>
 		</mongo:remove-documents>
-		<choice doc:name="Choice" doc:id="427b9c50-ed11-4883-8bf8-6ebd02bbb9d0" >
-			<when expression="#[payload == 1]">
-				<ee:transform doc:name="Transform Message1" doc:id="e1bc0c5a-1b48-40cf-87b9-7b95991fda56">
-			<ee:message>
-				<ee:set-payload><![CDATA[%dw 2.0
-output application/json
-
----
-{
-  "x-event-code": 1999,
-  "x-event-msg": "MSISDN successfully removed from whitelist"
-}
-]]></ee:set-payload>
-			</ee:message>
-		</ee:transform>
-			</when>
-			<otherwise >
-				<ee:transform doc:name="Transform Message" doc:id="b7cc8964-6f64-42b8-a9b5-f70071810532" >
-					<ee:message >
-						<ee:set-payload ><![CDATA[%dw 2.0
-output application/json
-
----
-{
-  "x-event-code": 4000,
-  "x-event-msg": "No Record Found",
-}]]></ee:set-payload>
-					</ee:message>
-					<ee:variables >
-						<ee:set-variable variableName="httpStatus" ><![CDATA[404]]></ee:set-variable>
-					</ee:variables>
-				</ee:transform>
-			</otherwise>
-		</choice>
-	</flow>
+		<logger level="INFO" doc:name="END - Remove MSISDN Whitelist" doc:id="72ded4e9-1eee-4e93-a839-5e650a2cefed" message="END - Remove MSISDN Whitelist: Deleted"/>
+	</sub-flow>
 </mule>

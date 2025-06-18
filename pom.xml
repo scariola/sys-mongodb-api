@@ -36,6 +36,7 @@
 							<artifactId>mongodb-driver-legacy</artifactId>
 						</sharedLibrary>
 					</sharedLibraries>
+					<classifier>mule-application</classifier>
 				</configuration>
 			</plugin>
 		</plugins>

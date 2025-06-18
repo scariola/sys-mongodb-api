@@ -75,18 +75,32 @@
 			<set-variable variableName="httpStatus" value="501"
 				doc:name="Set httpStatus  = 501" />
 		</on-error-propagate>
-
-
-		<on-error-propagate type="ANY" logException="true"
-			enableNotifications="true">
-			<ee:transform doc:name="Set Payload - Any Occured">
-				<ee:message>
-					<ee:set-payload
-						resource="dw/unexpected-system-error.dwl" />
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="4934a7bf-65ba-4d19-a2b1-b8b4ad1cae1e" type="MONGO:CONNECTIVITY">
+			<ee:transform doc:name="Set Payload - Mongo Connectivity" doc:id="f022d0f9-2070-49c6-a190-e4c088acc6e8" >
+				<ee:message >
+					<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+  "x-event-code": 9010,
+  "x-event-msg": "Cannot connect to mongodb at the moment",
+  "result":{
+  	"errorType": error.errorType.namespace ++ ":" ++ error.errorType.identifier,
+    "errorDescription": error.detailedDescription,
+    "correlationId": correlationId
+  }
+}]]></ee:set-payload>
 				</ee:message>
 			</ee:transform>
-			<set-variable variableName="httpStatus" value="500"
-				doc:name="Set httpStatus  = 500" />
+			<set-variable value="503" doc:name="Set httpStatus  = 503" doc:id="91efed4b-e1fb-408a-ace2-e4a7c5d94d37" variableName="httpStatus"/>
+		</on-error-propagate>
+		<on-error-propagate type="ANY" logException="true" enableNotifications="true">
+			<ee:transform doc:name="Set Payload - Any Occured">
+				<ee:message>
+					<ee:set-payload resource="dw/unexpected-system-error.dwl" />
+				</ee:message>
+			</ee:transform>
+			<set-variable variableName="httpStatus" value="500" doc:name="Set httpStatus  = 500" />
 		</on-error-propagate>
 
 	</error-handler>

@@ -24,12 +24,16 @@
 		<error-handler
 			ref="sys-mongodb-api_Shared_Error_Handler" />
 	</flow>
-	<flow name="delete:\whitelist\(msisdn):sys-mongodb-api-config">
-		<flow-ref doc:name="Flow Reference"
-			doc:id="4d6fa309-124d-441b-97f1-ae5a909d7561"
-			name="mongodb-connector-flowsFlow1" />
-	</flow>
 	<flow name="get:\whitelist\(msisdn):sys-mongodb-api-config">
-		<flow-ref doc:name="Flow Reference" doc:id="6500c66e-657b-45c4-ba83-0e1ba9b122ba" name="mongodb-connector-flowsFlow" />
+		<logger level="INFO" doc:name="START - GET  /whitelist/(msisdn)" doc:id="3b7b7499-ade0-4319-9e4e-1ea465eaadb3" message="START: get:\whitelist\(msisdn)-Initiating MongoDB request"/>
+		<flow-ref doc:name="flow ref to msisdn-mongodb-lookup-flow" doc:id="6500c66e-657b-45c4-ba83-0e1ba9b122ba" name="msisdn-mongodb-lookup-flow" />
+		<logger level="INFO" doc:name="END - GET  /whitelist/(msisdn)" doc:id="a88a5f01-c1f0-4043-a3ff-e9ab47ca9a01" message="END: get:\whitelist\(msisdn)-Subscriber document retrieved"/>
+	</flow>
+	<flow name="delete:\whitelist\(msisdn):sys-mongodb-api-config">
+		<logger level="INFO" doc:name="START - DELETE /whitelist/(msisdn)" doc:id="d52599e5-518f-432c-89e0-f3b165896c18" message="START: delete:\whitelist\(msisdn)-Initiating MongoDB request"/>
+		<flow-ref doc:name="flow ref to msisdn-mongodb-deletion-flow"
+			doc:id="4d6fa309-124d-441b-97f1-ae5a909d7561"
+			name="msisdn-mongodb-deletion-flow" />
+		<logger level="INFO" doc:name="END - DELETE /whitelist/(msisdn)" doc:id="c163ae67-fbcd-443f-a4ce-553406b3cc76" message="END: delete:\whitelist\(msisdn)-Subscriber msisdn deleted"/>
 	</flow>
 </mule>
