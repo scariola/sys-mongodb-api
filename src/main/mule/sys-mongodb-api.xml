@@ -7,7 +7,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd ">
 
-	<flow name="sys-mongodb-api-main">
+	<flow name="sys-mongodb-api-main" doc:id="97cf0254-82e0-475f-882f-5ab03432b917">
 		<http:listener path="/api/*"
 			config-ref="HTTP_Listener_Config_sys_mongodb_api">
 			<http:response
@@ -27,13 +27,13 @@
 	<flow name="get:\whitelist\(msisdn):sys-mongodb-api-config">
 		<logger level="INFO" doc:name="START - GET  /whitelist/(msisdn)" doc:id="3b7b7499-ade0-4319-9e4e-1ea465eaadb3" message="START: get:\whitelist\(msisdn)-Initiating MongoDB request"/>
 		<flow-ref doc:name="flow ref to msisdn-mongodb-lookup-flow" doc:id="6500c66e-657b-45c4-ba83-0e1ba9b122ba" name="msisdn-mongodb-lookup-flow" />
-		<logger level="INFO" doc:name="END - GET  /whitelist/(msisdn)" doc:id="a88a5f01-c1f0-4043-a3ff-e9ab47ca9a01" message="END: get:\whitelist\(msisdn)-Subscriber document retrieved"/>
+		<logger level="INFO" doc:name="END - GET  /whitelist/(msisdn)" doc:id="a88a5f01-c1f0-4043-a3ff-e9ab47ca9a01" message="#['END: get:\whitelist\(msisdn)-Subscriber document ' ++ if (payload.&quot;x-event-msg&quot; == 'Success') &quot;retrieved!&quot; else &quot;not found.&quot;]"/>
 	</flow>
 	<flow name="delete:\whitelist\(msisdn):sys-mongodb-api-config">
 		<logger level="INFO" doc:name="START - DELETE /whitelist/(msisdn)" doc:id="d52599e5-518f-432c-89e0-f3b165896c18" message="START: delete:\whitelist\(msisdn)-Initiating MongoDB request"/>
 		<flow-ref doc:name="flow ref to msisdn-mongodb-deletion-flow"
 			doc:id="4d6fa309-124d-441b-97f1-ae5a909d7561"
 			name="msisdn-mongodb-deletion-flow" />
-		<logger level="INFO" doc:name="END - DELETE /whitelist/(msisdn)" doc:id="c163ae67-fbcd-443f-a4ce-553406b3cc76" message="END: delete:\whitelist\(msisdn)-Subscriber msisdn deleted"/>
+		<logger level="INFO" doc:name="END - DELETE /whitelist/(msisdn)" doc:id="c163ae67-fbcd-443f-a4ce-553406b3cc76" message="#['END: delete:\whitelist\(msisdn)-Subscriber msisdn ' ++ if (payload.&quot;x-event-msg&quot; contains(&quot;successfully&quot;)) &quot;deleted.&quot; else &quot;not found.&quot;]"/>
 	</flow>
 </mule>

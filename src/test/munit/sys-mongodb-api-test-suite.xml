@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="sys-mongodb-api-test-suite.xml" />
+	<munit:test name="get:\whitelist\(msisdn):sys-mongodb-api-config-success-test" doc:id="b30b0718-49c2-42d3-9c66-e14c84ba190b" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock flow ref to msisdn-mongodb-lookup-flow" doc:id="a793a9d3-249d-47de-85a5-24c3fd570b8a" processor="flow-ref">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="6500c66e-657b-45c4-ba83-0e1ba9b122ba" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[output application/json --- readUrl('classpath://getwhitelistmsisdnsysmongodbapiconfigsuccesstest\mock_payload.dwl')]" mediaType="application/json" encoding="UTF-8" />
+					<munit-tools:variables >
+						<munit-tools:variable key="outboundHeaders" value="#[readUrl('classpath://getwhitelistmsisdnsysmongodbapiconfigsuccesstest\mock_variable_.dwl')]" />
+						<munit-tools:variable key="collection" value="#[output application/json --- readUrl('classpath://getwhitelistmsisdnsysmongodbapiconfigsuccesstest\mock_variable_1.dwl')]" mediaType="application/json" encoding="UTF-8" />
+						<munit-tools:variable key="msisdn" value="#[output application/json --- readUrl('classpath://getwhitelistmsisdnsysmongodbapiconfigsuccesstest\mock_variable_2.dwl')]" mediaType="application/json" encoding="UTF-8" />
+					</munit-tools:variables>
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit:set-event doc:name="Set Input" doc:id="be3c7165-1257-4179-a0a1-ee598cb8e3b3" >
+				<munit:payload value="#[readUrl('classpath://getwhitelistmsisdnsysmongodbapiconfigsuccesstest\set-event_payload.dwl')]" encoding="UTF-8" />
+				<munit:attributes value="#[readUrl('classpath://getwhitelistmsisdnsysmongodbapiconfigsuccesstest\set-event_attributes.dwl')]" />
+				<munit:variables >
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://getwhitelistmsisdnsysmongodbapiconfigsuccesstest\set-event_variable_.dwl')]" />
+				</munit:variables>
+			</munit:set-event>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to get:\whitelist\(msisdn):sys-mongodb-api-config" doc:id="edc37f31-c1b1-439e-aa62-39a5eeae93c1" name="get:\whitelist\(msisdn):sys-mongodb-api-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert payload" doc:id="2a720683-7a3d-4d95-b35e-1931bcb609f5" message="The payload does not match">
+				<munit-tools:that ><![CDATA[#[%dw 2.0
+import getwhitelistmsisdnsysmongodbapiconfigsuccesstest::assert_expression_payload
+---
+assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
+			</munit-tools:assert>
+			<munit-tools:verify-call doc:name="Verify END - GET  /whitelist/(msisdn)" doc:id="b5f9be6f-7d9b-41ab-b62b-b3b82e470567" processor="logger" times="1">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="a88a5f01-c1f0-4043-a3ff-e9ab47ca9a01" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+			</munit-tools:verify-call>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="delete:\whitelist\(msisdn):sys-mongodb-api-config-success-test" doc:id="65701333-d047-4be4-9974-29e142abaee2" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock flow ref to msisdn-mongodb-deletion-flow" doc:id="b680dbd5-40b0-4722-8971-8cd17216b931" processor="flow-ref">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="4d6fa309-124d-441b-97f1-ae5a909d7561" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[output application/json --- readUrl('classpath://deletewhitelistmsisdnsysmongodbapiconfigsuccesstest\mock_payload.dwl')]" mediaType="application/json" encoding="UTF-8" />
+					<munit-tools:variables >
+						<munit-tools:variable key="outboundHeaders" value="#[readUrl('classpath://deletewhitelistmsisdnsysmongodbapiconfigsuccesstest\mock_variable_.dwl')]" />
+						<munit-tools:variable key="collection" value="#[output application/json --- readUrl('classpath://deletewhitelistmsisdnsysmongodbapiconfigsuccesstest\mock_variable_1.dwl')]" mediaType="application/json" encoding="UTF-8" />
+						<munit-tools:variable key="msisdn" value="#[output application/json --- readUrl('classpath://deletewhitelistmsisdnsysmongodbapiconfigsuccesstest\mock_variable_2.dwl')]" mediaType="application/json" encoding="UTF-8" />
+					</munit-tools:variables>
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit:set-event doc:name="Set Input" doc:id="9f26b745-6028-462c-885c-6d0470222a0d" >
+				<munit:payload value="#[readUrl('classpath://deletewhitelistmsisdnsysmongodbapiconfigsuccesstest\set-event_payload.dwl')]" encoding="UTF-8" />
+				<munit:attributes value="#[readUrl('classpath://deletewhitelistmsisdnsysmongodbapiconfigsuccesstest\set-event_attributes.dwl')]" />
+				<munit:variables >
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://deletewhitelistmsisdnsysmongodbapiconfigsuccesstest\set-event_variable_.dwl')]" />
+				</munit:variables>
+			</munit:set-event>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to delete:\whitelist\(msisdn):sys-mongodb-api-config" doc:id="40021265-0ca2-4179-8da4-4c2db5c81b07" name="delete:\whitelist\(msisdn):sys-mongodb-api-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert payload" doc:id="445b4079-eaa4-45b4-8338-534b2848f563" message="The payload does not match">
+				<munit-tools:that ><![CDATA[#[%dw 2.0
+import deletewhitelistmsisdnsysmongodbapiconfigsuccesstest::assert_expression_payload
+---
+assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
+			</munit-tools:assert>
+			<munit-tools:verify-call doc:name="Verify END - DELETE /whitelist/(msisdn)" doc:id="18392337-ed3b-4b4c-83c5-05829db8c10f" processor="logger" times="1">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="c163ae67-fbcd-443f-a4ce-553406b3cc76" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+			</munit-tools:verify-call>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>

@@ -49,12 +49,12 @@ output application/json
 
 ---
 {
-  "x-event-code": 4000,
-  "x-event-msg": "No Record Found",
+  "x-event-code": 1005,
+  "x-event-msg": "No MSISDN Found",
+  "result":{}
 }]]></ee:set-payload>
 					</ee:message>
 					<ee:variables >
-						<ee:set-variable variableName="httpStatus" ><![CDATA[404]]></ee:set-variable>
 					</ee:variables>
 				</ee:transform>
 			</otherwise>
@@ -96,8 +96,9 @@ output application/json
 
 ---
 {
-  "x-event-code": 4000,
-  "x-event-msg": "No Record Found",
+  "x-event-code": 1005,
+  "x-event-msg": "No MSISDN Found",
+  "result":{}
 }]]></ee:set-payload>
 					</ee:message>
 					<ee:variables >

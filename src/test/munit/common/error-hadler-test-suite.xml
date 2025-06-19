@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="error-hadler-test-suite.xml" />
+	<munit:test name="sys-mongodb-api-main-apikit-bad-request-test" doc:id="20247509-bd4e-4fb4-b695-56d8e57e85fd" >
+		<munit:behavior>
+			<munit-tools:mock-when doc:name="Mock sys-mongodb-api-main-api-router" doc:id="c05c5a86-0122-41c0-83e1-8cf29c88ddd1" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sys-mongodb-api-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:BAD_REQUEST" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="9311f6ec-cbc2-40b5-8c95-77f1b8004dc1" >
+				<munit:attributes value='#[{&#10;  "headers": {&#10;    "x-correlation-id": "s12312312312312312",&#10;    "user-agent": "PostmanRuntime/7.44.1",&#10;    "accept": "*/*",&#10;    "cache-control": "no-cache",&#10;    "postman-token": "93e54d9d-ac59-4f24-af4b-053a0d73deb7",&#10;    "host": "localhost:8081",&#10;    "accept-encoding": "gzip, deflate, br",&#10;    "connection": "keep-alive"&#10;  },&#10;  "clientCertificate": null,&#10;  "method": "GET",&#10;  "scheme": "http",&#10;  "queryParams": {},&#10;  "requestUri": "/api/brand/91722",&#10;  "queryString": "",&#10;  "version": "HTTP/1.1",&#10;  "maskedRequestPath": "/brand/91722",&#10;  "listenerPath": "/api/*",&#10;  "localAddress": "/127.0.0.1:8081",&#10;  "relativePath": "/api/brand/91722",&#10;  "uriParams": {&#10;    "prefix": "91722"&#10;  },&#10;  "rawRequestUri": "/api/brand/91722",&#10;  "rawRequestPath": "/api/brand/91722",&#10;  "remoteAddress": "/127.0.0.1:58493",&#10;  "requestPath": "/api/brand/91722"&#10;}]' />
+			</munit:set-event>
+			<try doc:name="Try" doc:id="710b8fca-1037-49b9-8e43-b440634e5721" >
+				<flow-ref doc:name="flow ref to sys-mongodb-api-main" doc:id="6dc3408c-5d0e-46ee-9c54-be2edc3542f9" name="sys-mongodb-api-main"/>
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="01b83a3e-8051-44f8-84b5-f711b5136803" >
+						<logger level="INFO" doc:name="Logger" doc:id="26506e51-cf6a-4740-9c65-22793b9c0879" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert api kit bad request" doc:id="744e3b57-05cb-454d-9643-47d4e7ff2ae7" is="#[MunitTools::equalTo('APIKIT:BAD_REQUEST')]" expression="#[payload.result.errorType]"/>
+			<munit-tools:verify-call doc:name="Verify Call httpStatus 400" doc:id="d4e9f8ab-34cb-401e-8bbc-84a6c4bfb705" processor="set-variable" times="1">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="400" attributeName="value" />
+				</munit-tools:with-attributes>
+			</munit-tools:verify-call>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="sys-mongodb-api-main-apikit-not-found-test" doc:id="fb701c02-9b55-463b-9260-22d15c117666" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock sys-mongodb-api-main-api-router" doc:id="290af9c0-9bcb-44a3-a9f0-fd6b3dbc2eb9" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sys-mongodb-api-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_FOUND" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="6afb73c1-ea7b-4c0e-a6a0-735dd6840963" >
+				<munit:attributes value='#[{&#10;  "headers": {&#10;    "x-correlation-id": "s12312312312312312",&#10;    "user-agent": "PostmanRuntime/7.44.1",&#10;    "accept": "*/*",&#10;    "cache-control": "no-cache",&#10;    "postman-token": "93e54d9d-ac59-4f24-af4b-053a0d73deb7",&#10;    "host": "localhost:8081",&#10;    "accept-encoding": "gzip, deflate, br",&#10;    "connection": "keep-alive"&#10;  },&#10;  "clientCertificate": null,&#10;  "method": "GET",&#10;  "scheme": "http",&#10;  "queryParams": {},&#10;  "requestUri": "/api/brand/91722",&#10;  "queryString": "",&#10;  "version": "HTTP/1.1",&#10;  "maskedRequestPath": "/brand/91722",&#10;  "listenerPath": "/api/*",&#10;  "localAddress": "/127.0.0.1:8081",&#10;  "relativePath": "/api/brand/91722",&#10;  "uriParams": {&#10;    "prefix": "91722"&#10;  },&#10;  "rawRequestUri": "/api/brand/91722",&#10;  "rawRequestPath": "/api/brand/91722",&#10;  "remoteAddress": "/127.0.0.1:58493",&#10;  "requestPath": "/api/brand/91722"&#10;}]' />
+			</munit:set-event>
+			<try doc:name="Try" doc:id="0fce75f7-2746-4779-94c8-e1946fa5a775" >
+				<flow-ref doc:name="flow ref to sys-mongodb-api-main" doc:id="d17afe8e-91ca-460e-ba77-51872c3a9272" name="sys-mongodb-api-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="7209abe4-5a4a-427e-a647-09c2c3f4770d" >
+						<logger level="INFO" doc:name="Logger" doc:id="07e285df-4936-4c88-aec1-89a1fd809bbd" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert api kit not found" doc:id="deb19227-5979-448c-ab2f-ed2be92aa244" is="#[MunitTools::equalTo('APIKIT:NOT_FOUND')]" expression="#[payload.result.errorType]" />
+			<munit-tools:verify-call doc:name="Verify Call httpStatus 404" doc:id="ff99c19e-76c6-4db3-9116-a3ef05cdc843" processor="set-variable" times="1" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="404" attributeName="value" />
+				</munit-tools:with-attributes>
+			</munit-tools:verify-call>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="sys-mongodb-api-main-apikit-method-not-allowed-test" doc:id="acadd6a0-a6c5-40e4-9725-4a256137ca33" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock sys-mongodb-api-main-api-router" doc:id="10630ca9-6af1-4534-968c-cbae1e055a49" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sys-mongodb-api-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:METHOD_NOT_ALLOWED" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="7b67cd5d-32cc-493b-a623-0efdf807f05b" >
+				<munit:attributes value='#[{&#10;  "headers": {&#10;    "x-correlation-id": "s12312312312312312",&#10;    "user-agent": "PostmanRuntime/7.44.1",&#10;    "accept": "*/*",&#10;    "cache-control": "no-cache",&#10;    "postman-token": "93e54d9d-ac59-4f24-af4b-053a0d73deb7",&#10;    "host": "localhost:8081",&#10;    "accept-encoding": "gzip, deflate, br",&#10;    "connection": "keep-alive"&#10;  },&#10;  "clientCertificate": null,&#10;  "method": "GET",&#10;  "scheme": "http",&#10;  "queryParams": {},&#10;  "requestUri": "/api/brand/91722",&#10;  "queryString": "",&#10;  "version": "HTTP/1.1",&#10;  "maskedRequestPath": "/brand/91722",&#10;  "listenerPath": "/api/*",&#10;  "localAddress": "/127.0.0.1:8081",&#10;  "relativePath": "/api/brand/91722",&#10;  "uriParams": {&#10;    "prefix": "91722"&#10;  },&#10;  "rawRequestUri": "/api/brand/91722",&#10;  "rawRequestPath": "/api/brand/91722",&#10;  "remoteAddress": "/127.0.0.1:58493",&#10;  "requestPath": "/api/brand/91722"&#10;}]' />
+			</munit:set-event>
+			<try doc:name="Try" doc:id="38363ea6-8226-4b77-a434-d6a31bf27f18" >
+				<flow-ref doc:name="flow ref to sys-mongodb-api-main" doc:id="775d6d5f-4224-4eeb-9664-423f59690450" name="sys-mongodb-api-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="c0bb8e76-047d-46b7-aa4a-7c6dd9aa73cb" >
+						<logger level="INFO" doc:name="Logger" doc:id="43d50624-1099-42d2-bfb1-aa73cfbacf83" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert api kit method not allowed" doc:id="c597ee94-4791-4991-8681-32a6bffe19a3" expression="#[payload.result.errorType]" is="#[MunitTools::equalTo('APIKIT:METHOD_NOT_ALLOWED')]" />
+			<munit-tools:verify-call doc:name="Verify Call httpStatus 405" doc:id="e85b1204-8392-4640-b77d-38066ee67bc1" processor="set-variable" times="1" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="405" attributeName="value" />
+				</munit-tools:with-attributes>
+			</munit-tools:verify-call>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="sys-mongodb-api-main-apikit-not-accepted-test" doc:id="23500227-05ea-4d8c-81a0-a9f0f7bbfba7" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock sys-mongodb-api-main-api-router" doc:id="f472b59a-0fb2-477d-bc1f-a7f9c91878a3" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sys-mongodb-api-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_ACCEPTABLE" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="b2a749b1-6f2b-4545-9eff-0b980d71c91f" >
+				<munit:attributes value='#[{&#10;  "headers": {&#10;    "x-correlation-id": "s12312312312312312",&#10;    "user-agent": "PostmanRuntime/7.44.1",&#10;    "accept": "*/*",&#10;    "cache-control": "no-cache",&#10;    "postman-token": "93e54d9d-ac59-4f24-af4b-053a0d73deb7",&#10;    "host": "localhost:8081",&#10;    "accept-encoding": "gzip, deflate, br",&#10;    "connection": "keep-alive"&#10;  },&#10;  "clientCertificate": null,&#10;  "method": "GET",&#10;  "scheme": "http",&#10;  "queryParams": {},&#10;  "requestUri": "/api/brand/91722",&#10;  "queryString": "",&#10;  "version": "HTTP/1.1",&#10;  "maskedRequestPath": "/brand/91722",&#10;  "listenerPath": "/api/*",&#10;  "localAddress": "/127.0.0.1:8081",&#10;  "relativePath": "/api/brand/91722",&#10;  "uriParams": {&#10;    "prefix": "91722"&#10;  },&#10;  "rawRequestUri": "/api/brand/91722",&#10;  "rawRequestPath": "/api/brand/91722",&#10;  "remoteAddress": "/127.0.0.1:58493",&#10;  "requestPath": "/api/brand/91722"&#10;}]' />
+			</munit:set-event>
+			<try doc:name="Try" doc:id="5a93a60b-c591-4e96-9c7b-9d262089911c" >
+				<flow-ref doc:name="flow ref to sys-mongodb-api-main" doc:id="2464d409-3dd0-4342-896b-00cda958efa1" name="sys-mongodb-api-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="d05eacba-b541-4544-8c6b-32dff112e640" >
+						<logger level="INFO" doc:name="Logger" doc:id="1718f96e-81a4-49dc-a312-4a28d214be24" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert api kit not accepted" doc:id="d4b2dbd2-104f-49be-bbaf-0061e20f4d53" expression="#[payload.result.errorType]" is="#[MunitTools::equalTo('APIKIT:NOT_ACCEPTABLE')]" />
+			<munit-tools:verify-call doc:name="Verify Call httpStatus 406" doc:id="bb8a61fa-4283-41ad-9390-3d64d9e0502d" processor="set-variable" times="1" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="406" attributeName="value" />
+				</munit-tools:with-attributes>
+			</munit-tools:verify-call>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="sys-mongodb-api-main-apikit-unsupported-media-type-test" doc:id="411912fc-74de-4fca-91af-74d924c1c943">
+		<munit:behavior>
+			<munit-tools:mock-when doc:name="Mock sys-mongodb-api-main-api-router" doc:id="20b0abbd-7448-4f6f-91b9-b069fbef2596" processor="apikit:router">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute whereValue="sys-mongodb-api-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return>
+					<munit-tools:error typeId="APIKIT:UNSUPPORTED_MEDIA_TYPE" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<munit:set-event doc:name="Set Event" doc:id="b070a28b-55eb-4dfb-ac12-08d025cc14a0">
+				<munit:attributes value='#[{&#10;  "headers": {&#10;    "x-correlation-id": "s12312312312312312",&#10;    "user-agent": "PostmanRuntime/7.44.1",&#10;    "accept": "*/*",&#10;    "cache-control": "no-cache",&#10;    "postman-token": "93e54d9d-ac59-4f24-af4b-053a0d73deb7",&#10;    "host": "localhost:8081",&#10;    "accept-encoding": "gzip, deflate, br",&#10;    "connection": "keep-alive"&#10;  },&#10;  "clientCertificate": null,&#10;  "method": "GET",&#10;  "scheme": "http",&#10;  "queryParams": {},&#10;  "requestUri": "/api/brand/91722",&#10;  "queryString": "",&#10;  "version": "HTTP/1.1",&#10;  "maskedRequestPath": "/brand/91722",&#10;  "listenerPath": "/api/*",&#10;  "localAddress": "/127.0.0.1:8081",&#10;  "relativePath": "/api/brand/91722",&#10;  "uriParams": {&#10;    "prefix": "91722"&#10;  },&#10;  "rawRequestUri": "/api/brand/91722",&#10;  "rawRequestPath": "/api/brand/91722",&#10;  "remoteAddress": "/127.0.0.1:58493",&#10;  "requestPath": "/api/brand/91722"&#10;}]' />
+			</munit:set-event>
+			<try doc:name="Try" doc:id="9488060a-c1b0-407f-9b52-c6000edce32e">
+				<flow-ref doc:name="flow ref to sys-mongodb-api-main" doc:id="b5ee26c1-3eec-4208-af93-bdb46d4d1251" name="sys-mongodb-api-main" />
+				<error-handler>
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="b29609de-c80f-4b51-81c6-63a9d411d39f">
+						<logger level="INFO" doc:name="Logger" doc:id="256ed14e-21d1-4cd1-bbcd-a738037a69bc" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation>
+			<munit-tools:assert-that doc:name="Assert api kit not accepted" doc:id="fb6a958f-83c4-4f9b-a768-7087888932b3" expression="#[payload.result.errorType]" is="#[MunitTools::equalTo('APIKIT:UNSUPPORTED_MEDIA_TYPE')]" />
+			<munit-tools:verify-call doc:name="Verify Call httpStatus 415" doc:id="cd52cba2-3268-414b-b785-7a1b405b4cea" processor="set-variable" times="1">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute whereValue="415" attributeName="value" />
+				</munit-tools:with-attributes>
+			</munit-tools:verify-call>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="sys-mongodb-api-main-apikit-not-implemented-test" doc:id="5008a665-91be-40c2-abb9-fd04c19dab62" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock sys-mongodb-api-main-api-router" doc:id="12c59fd1-41a5-4e46-b3b0-accd686830c8" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sys-mongodb-api-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_IMPLEMENTED" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="d92844a4-3046-453b-9829-457b1c7eddb7" >
+				<munit:attributes value='#[{&#10;  "headers": {&#10;    "x-correlation-id": "s12312312312312312",&#10;    "user-agent": "PostmanRuntime/7.44.1",&#10;    "accept": "*/*",&#10;    "cache-control": "no-cache",&#10;    "postman-token": "93e54d9d-ac59-4f24-af4b-053a0d73deb7",&#10;    "host": "localhost:8081",&#10;    "accept-encoding": "gzip, deflate, br",&#10;    "connection": "keep-alive"&#10;  },&#10;  "clientCertificate": null,&#10;  "method": "GET",&#10;  "scheme": "http",&#10;  "queryParams": {},&#10;  "requestUri": "/api/brand/91722",&#10;  "queryString": "",&#10;  "version": "HTTP/1.1",&#10;  "maskedRequestPath": "/brand/91722",&#10;  "listenerPath": "/api/*",&#10;  "localAddress": "/127.0.0.1:8081",&#10;  "relativePath": "/api/brand/91722",&#10;  "uriParams": {&#10;    "prefix": "91722"&#10;  },&#10;  "rawRequestUri": "/api/brand/91722",&#10;  "rawRequestPath": "/api/brand/91722",&#10;  "remoteAddress": "/127.0.0.1:58493",&#10;  "requestPath": "/api/brand/91722"&#10;}]' />
+			</munit:set-event>
+			<try doc:name="Try" doc:id="42e3a840-f5f0-412e-8669-b288ba235d9f" >
+				<flow-ref doc:name="flow ref to sys-mongodb-api-main" doc:id="dd028a99-c40d-4d06-9ee2-fae7bd848475" name="sys-mongodb-api-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="78529481-680b-4557-8ad2-0f1a144e38f0" >
+						<logger level="INFO" doc:name="Logger" doc:id="c8f9b13e-f5df-4453-ba60-069c0f3e85e7" />
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert api kit not accepted" doc:id="83a5fece-e15b-4e0f-893c-dfbe4611cbe1" expression="#[payload.result.errorType]" is="#[MunitTools::equalTo('APIKIT:NOT_IMPLEMENTED')]" />
+			<munit-tools:verify-call doc:name="Verify Call httpStatus 501" doc:id="7a3c8332-2aeb-4382-833b-d3ccb8ea6171" processor="set-variable" times="1" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="501" attributeName="value" />
+				</munit-tools:with-attributes>
+			</munit-tools:verify-call>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
