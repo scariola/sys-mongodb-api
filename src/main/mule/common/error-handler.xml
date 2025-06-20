@@ -7,7 +7,8 @@
         http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
         http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
 
-	<error-handler name="sys-mongodb-api_Shared_Error_Handler">
+	<error-handler
+		name="sys-mongodb-api_APIKIT_Error_Handler">
 
 		<on-error-propagate type="APIKIT:BAD_REQUEST">
 			<ee:transform doc:name="Set Payload - Bad Request">
@@ -75,10 +76,20 @@
 			<set-variable variableName="httpStatus" value="501"
 				doc:name="Set httpStatus  = 501" />
 		</on-error-propagate>
-		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="4934a7bf-65ba-4d19-a2b1-b8b4ad1cae1e" type="MONGO:CONNECTIVITY">
-			<ee:transform doc:name="Set Payload - Mongo Connectivity" doc:id="f022d0f9-2070-49c6-a190-e4c088acc6e8" >
-				<ee:message >
-					<ee:set-payload ><![CDATA[%dw 2.0
+
+	</error-handler>
+	<error-handler
+		name="sys-mongodb-api_Shared_Error_Handler"
+		doc:id="336131ba-6e58-4d62-a2e9-fabc80983ed5">
+		<on-error-propagate enableNotifications="true"
+			logException="true" doc:name="On Error Propagate"
+			doc:id="ed64358f-f774-49bd-ab0f-e71879345a7e"
+			type="MONGO:CONNECTIVITY">
+			<ee:transform
+				doc:name="Set Payload - Mongo Connectivity"
+				doc:id="3fb635ee-7554-4417-8c28-a8953b39e93d">
+				<ee:message>
+					<ee:set-payload><![CDATA[%dw 2.0
 output application/json
 ---
 {
@@ -92,7 +103,10 @@ output application/json
 }]]></ee:set-payload>
 				</ee:message>
 			</ee:transform>
-			<set-variable value="503" doc:name="Set httpStatus  = 503" doc:id="91efed4b-e1fb-408a-ace2-e4a7c5d94d37" variableName="httpStatus"/>
+			<set-variable value="503"
+				doc:name="Set httpStatus  = 503"
+				doc:id="d0fab0ec-bbc4-4ede-b2f1-140c08584b54"
+				variableName="httpStatus" />
 		</on-error-propagate>
 		<on-error-propagate type="ANY" logException="true" enableNotifications="true">
 			<ee:transform doc:name="Set Payload - Any Occured">

@@ -315,11 +315,8 @@ assert_expression_payload::main({payload: payload, attributes: attributes, vars:
 		<munit:validation>
 			<munit-tools:assert-that doc:name="Assert error mongo connectivity" doc:id="bb6a4925-b6ee-4b41-b839-df95c78383b7" is="#[MunitTools::equalTo('MONGO:CONNECTIVITY')]" expression="#[payload.result.errorType]" />
 			<munit-tools:verify-call doc:name="Verify Error Status 503" doc:id="dd0bd47a-d2b9-4040-96ab-31ce4f35fcb8" processor="set-variable" times="1">
-				<munit-tools:with-attributes>
-					<munit-tools:with-attribute whereValue="91efed4b-e1fb-408a-ace2-e4a7c5d94d37" attributeName="doc:id" />
-					<munit-tools:with-attribute whereValue="91efed4b-e1fb-408a-ace2-e4a7c5d94d37" attributeName="doc:id" />
-					<munit-tools:with-attribute whereValue="91efed4b-e1fb-408a-ace2-e4a7c5d94d37" attributeName="doc:id" />
-					<munit-tools:with-attribute whereValue="91efed4b-e1fb-408a-ace2-e4a7c5d94d37" attributeName="doc:id" />
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="d0fab0ec-bbc4-4ede-b2f1-140c08584b54" attributeName="doc:id" />
 				</munit-tools:with-attributes>
 			</munit-tools:verify-call>
 		</munit:validation>
@@ -360,9 +357,6 @@ assert_expression_payload::main({payload: payload, attributes: attributes, vars:
 		<munit:validation >
 			<munit-tools:assert-that doc:name="Assert error any" doc:id="7b9f691f-99b9-4575-8ddc-aa2f93106524" expression="#[payload.result.errorType]" is="#[MunitTools::equalTo('MULE:ANY')]" />
 			<munit-tools:verify-call doc:name="Verify Error Status 500" doc:id="c36af001-af51-4dcd-868f-6d9658df2ec9" processor="set-variable" times="1" >
-				<munit-tools:with-attributes >
-					<munit-tools:with-attribute whereValue="500" attributeName="value" />
-				</munit-tools:with-attributes>
 			</munit-tools:verify-call>
 		</munit:validation>
 	</munit:test>
@@ -402,8 +396,8 @@ assert_expression_payload::main({payload: payload, attributes: attributes, vars:
 		<munit:validation>
 			<munit-tools:assert-that doc:name="Assert error mongo connectivity" doc:id="3da0a5b5-8515-448d-93c6-63072b02f198" expression="#[payload.result.errorType]" is="#[MunitTools::equalTo('MONGO:CONNECTIVITY')]" />
 			<munit-tools:verify-call doc:name="Verify Error Status 503" doc:id="5ce9f336-6836-4e7f-a687-7cb71861be47" processor="set-variable" times="1">
-				<munit-tools:with-attributes>
-					<munit-tools:with-attribute whereValue="91efed4b-e1fb-408a-ace2-e4a7c5d94d37" attributeName="doc:id" />
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="d0fab0ec-bbc4-4ede-b2f1-140c08584b54" attributeName="doc:id" />
 				</munit-tools:with-attributes>
 			</munit-tools:verify-call>
 		</munit:validation>

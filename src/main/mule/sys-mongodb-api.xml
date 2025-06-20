@@ -22,7 +22,7 @@
 		</http:listener>
 		<apikit:router config-ref="sys-mongodb-api-config" />
 		<error-handler
-			ref="sys-mongodb-api_Shared_Error_Handler" />
+			ref="sys-mongodb-api_APIKIT_Error_Handler" />
 	</flow>
 	<flow name="get:\whitelist\(msisdn):sys-mongodb-api-config">
 		<logger level="INFO" doc:name="START - GET  /whitelist/(msisdn)" doc:id="3b7b7499-ade0-4319-9e4e-1ea465eaadb3" message="START: get:\whitelist\(msisdn)-Initiating MongoDB request"/>
