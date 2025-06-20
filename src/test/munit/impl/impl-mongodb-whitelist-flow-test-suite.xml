@@ -408,7 +408,7 @@ assert_expression_payload::main({payload: payload, attributes: attributes, vars:
 			</munit-tools:verify-call>
 		</munit:validation>
 	</munit:test>
-	<munit:test name="msisdn-mongodb-lookup-flow-api_Shared_Error_Handler-mongoDB-Connectivity-test1" doc:id="bba6817c-9635-4e45-9f9a-7889b9ec7e9b">
+	<munit:test name="msisdn-mongodb-lookup-flow-api_Shared_Error_Handler-any-test" doc:id="bba6817c-9635-4e45-9f9a-7889b9ec7e9b">
 		<munit:behavior >
 			<munit-tools:mock-when doc:name="Mock flow ref to find-msisdn-whitelist-subflow" doc:id="19abbd0e-8e7b-4659-87a8-1e370a41049c" processor="flow-ref" >
 				<munit-tools:with-attributes >
