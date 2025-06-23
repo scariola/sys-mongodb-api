@@ -8,7 +8,7 @@
 	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd ">
 
 	<flow name="sys-mongodb-api-main" doc:id="97cf0254-82e0-475f-882f-5ab03432b917">
-		<http:listener path="/api/*"
+		<http:listener path="${app.path.basepath}"
 			config-ref="HTTP_Listener_Config_sys_mongodb_api">
 			<http:response
 				statusCode="#[vars.httpStatus default 200]">
