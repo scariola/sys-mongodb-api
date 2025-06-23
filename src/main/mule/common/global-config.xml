@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:mongo="http://www.mulesoft.org/schema/mule/mongo"
+<mule
+	xmlns:api-gateway="http://www.mulesoft.org/schema/mule/api-gateway"
+	xmlns:mongo="http://www.mulesoft.org/schema/mule/mongo"
 	xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit"
 	xmlns:http="http://www.mulesoft.org/schema/mule/http"
 	xmlns:mongodb="http://www.mulesoft.org/schema/mule/mongodb"
@@ -13,7 +15,8 @@ http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/m
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd
 http://www.mulesoft.org/schema/mule/mongodb http://www.mulesoft.org/schema/mule/mongodb/current/mule-mongodb.xsd
-http://www.mulesoft.org/schema/mule/mongo http://www.mulesoft.org/schema/mule/mongo/current/mule-mongo.xsd">
+http://www.mulesoft.org/schema/mule/mongo http://www.mulesoft.org/schema/mule/mongo/current/mule-mongo.xsd
+http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd">
 	<secure-properties:config
 		name="Secure_Properties_Config" doc:name="Secure Properties Config"
 		doc:id="74bea5bd-e298-4530-8459-dc624467e340"
@@ -41,4 +44,8 @@ http://www.mulesoft.org/schema/mule/mongo http://www.mulesoft.org/schema/mule/mo
 		<mongo:connection-string-connection
 			connectionString="${mongodb.connection.string}" />
 	</mongo:config>
+	<api-gateway:autodiscovery apiId="${app.id}"
+		ignoreBasePath="false" doc:name="API Autodiscovery"
+		doc:id="c22d9396-d023-4f1a-ad40-3a914005c017"
+		flowRef="sys-mongodb-api-main" />
 </mule>
