@@ -93,12 +93,12 @@
 output application/json
 ---
 {
+  "x-event-id":	correlationId,	
   "x-event-code": 9010,
   "x-event-msg": "Cannot connect to mongodb at the moment",
   "result":{
   	"errorType": error.errorType.namespace ++ ":" ++ error.errorType.identifier,
-    "errorDescription": error.detailedDescription,
-    "correlationId": correlationId
+    "errorDescription": error.detailedDescription
   }
 }]]></ee:set-payload>
 				</ee:message>
@@ -108,13 +108,16 @@ output application/json
 				doc:id="d0fab0ec-bbc4-4ede-b2f1-140c08584b54"
 				variableName="httpStatus" />
 		</on-error-propagate>
-		<on-error-propagate type="ANY" logException="true" enableNotifications="true">
+		<on-error-propagate type="ANY" logException="true"
+			enableNotifications="true">
 			<ee:transform doc:name="Set Payload - Any Occured">
 				<ee:message>
-					<ee:set-payload resource="dw/unexpected-system-error.dwl" />
+					<ee:set-payload
+						resource="dw/unexpected-system-error.dwl" />
 				</ee:message>
 			</ee:transform>
-			<set-variable variableName="httpStatus" value="500" doc:name="Set httpStatus  = 500" />
+			<set-variable variableName="httpStatus" value="500"
+				doc:name="Set httpStatus  = 500" />
 		</on-error-propagate>
 
 	</error-handler>

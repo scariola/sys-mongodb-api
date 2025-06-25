@@ -10,18 +10,37 @@
 http://www.mulesoft.org/schema/mule/mongodb http://www.mulesoft.org/schema/mule/mongodb/current/mule-mongodb.xsd
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
 http://www.mulesoft.org/schema/mule/mongo http://www.mulesoft.org/schema/mule/mongo/current/mule-mongo.xsd">
-	<sub-flow name="find-msisdn-whitelist-subflow" doc:id="d4e6eb00-d95d-4db4-92da-a42acc1291d6" >
-		<logger level="INFO" doc:name="START - MSISDN MongoDB Lookup" doc:id="2a241ee2-195a-4b4a-882a-0b003af9b5f6" message="START - MSISDN Lookup: Find Document"/>
-		<mongo:find-documents doc:name="Find MSISDN Whitelist" doc:id="1bd03298-99d6-4afc-b444-2900b3687252" config-ref="MongoDB_Config" collectionName="#[vars.collection.collection]" fields="eligible, msisdn">
+	<sub-flow name="find-msisdn-whitelist-subflow"
+		doc:id="d4e6eb00-d95d-4db4-92da-a42acc1291d6">
+		<logger level="INFO" doc:name="START - MSISDN MongoDB Lookup"
+			doc:id="2a241ee2-195a-4b4a-882a-0b003af9b5f6"
+			message="START - MSISDN Lookup: Find Document" />
+		<mongo:find-documents
+			doc:name="Find MSISDN Whitelist"
+			doc:id="1bd03298-99d6-4afc-b444-2900b3687252"
+			config-ref="MongoDB_Config"
+			collectionName="#[vars.collection.collection]"
+			fields="eligible, msisdn">
 			<mongo:query><![CDATA[#[vars.msisdn]]]></mongo:query>
 		</mongo:find-documents>
-		<logger level="INFO" doc:name="END - MSISDN MongoDB Lookup" doc:id="b16b97c0-e99d-4e17-b552-6fb8942f2f1b" message="END - MSISDN MongoDB Lookup: Retrived"/>
+		<logger level="INFO" doc:name="END - MSISDN MongoDB Lookup"
+			doc:id="b16b97c0-e99d-4e17-b552-6fb8942f2f1b"
+			message="END - MSISDN MongoDB Lookup: Retrived" />
 	</sub-flow>
-	<sub-flow name="remove-msisdn-whitelist" doc:id="b8356714-61c8-4687-8885-60d7d507b14a">
-		<logger level="INFO" doc:name="START - Remove MSISDN Whitelist" doc:id="81fd2b20-a122-4ac9-b08d-08b116aa3dc7" message="START - Remove MSISDN Whitelist: Remove document" />
-		<mongo:remove-documents doc:name="Remove MSISDN Whitelist" doc:id="63fe7140-0eea-46b4-99ce-1848b41f1893" config-ref="MongoDB_Config" collectionName="#[vars.collection.collection]">
+	<sub-flow name="remove-msisdn-whitelist"
+		doc:id="b8356714-61c8-4687-8885-60d7d507b14a">
+		<logger level="INFO" doc:name="START - Remove MSISDN Whitelist"
+			doc:id="81fd2b20-a122-4ac9-b08d-08b116aa3dc7"
+			message="START - Remove MSISDN Whitelist: Remove document" />
+		<mongo:remove-documents
+			doc:name="Remove MSISDN Whitelist"
+			doc:id="63fe7140-0eea-46b4-99ce-1848b41f1893"
+			config-ref="MongoDB_Config"
+			collectionName="#[vars.collection.collection]">
 			<mongo:query><![CDATA[#[vars.msisdn]]]></mongo:query>
 		</mongo:remove-documents>
-		<logger level="INFO" doc:name="END - Remove MSISDN Whitelist" doc:id="72ded4e9-1eee-4e93-a839-5e650a2cefed" message="END - Remove MSISDN Whitelist: Deleted"/>
+		<logger level="INFO" doc:name="END - Remove MSISDN Whitelist"
+			doc:id="72ded4e9-1eee-4e93-a839-5e650a2cefed"
+			message="END - Remove MSISDN Whitelist: Deleted" />
 	</sub-flow>
 </mule>
