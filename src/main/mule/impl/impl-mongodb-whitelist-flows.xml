@@ -21,7 +21,7 @@ http://www.mulesoft.org/schema/mule/mongo http://www.mulesoft.org/schema/mule/mo
 				<ee:set-variable resource="dw/var-msisdn-collection.dwl" variableName="collection" />
 			</ee:variables>
 		</ee:transform>
-		<flow-ref doc:name="flow ref to find-msisdn-whitelist-subflow" doc:id="e8f15840-d402-4a5d-8c36-3ec76c5e0a38" name="find-msisdn-whitelist-subflow" />
+		<flow-ref doc:name="find-msisdn-whitelist-subflow" doc:id="e8f15840-d402-4a5d-8c36-3ec76c5e0a38" name="find-msisdn-whitelist-subflow" />
 		<choice doc:name="CONTAINS msisdn?" doc:id="7a4a01b9-417e-4fc8-bd9d-c982df69aaf8" >
 			<when expression="#[sizeOf(payload) &gt; 0]">
 				<ee:transform doc:name="Mongo DB Response TO API response(msisdn found)" doc:id="3ac1be0e-5ada-4131-b822-b1de8004e69c">
@@ -71,7 +71,7 @@ output application/json
 				<ee:set-variable resource="dw/var-msisdn-collection.dwl" variableName="collection" />
 			</ee:variables>
 		</ee:transform>
-		<flow-ref doc:name="flow ref to remove-msisdn-whitelist" doc:id="0b5a0a73-c9b2-4e86-8e9c-7a543d057442" name="remove-msisdn-whitelist" />
+		<flow-ref doc:name="remove-msisdn-whitelist" doc:id="0b5a0a73-c9b2-4e86-8e9c-7a543d057442" name="remove-msisdn-whitelist" />
 		<choice doc:name="IS successful?" doc:id="76616100-eacb-48f7-8e44-4a677815df80" >
 			<when expression="#[payload == 1]">
 				<ee:transform doc:name="Mongo DB Response TO API response(deletion success)" doc:id="35483c0d-e736-494b-8b99-70e742d16414">
