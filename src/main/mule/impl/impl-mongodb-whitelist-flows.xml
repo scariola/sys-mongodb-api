@@ -31,6 +31,7 @@ output application/json
 var result = payload[0]
 ---
 {
+  "x-event-id":	correlationId,
   "x-event-code": 1005,
   "x-event-msg": "Success",
   "results": {
@@ -49,6 +50,7 @@ output application/json
 
 ---
 {
+  "x-event-id":	correlationId,	
   "x-event-code": 1005,
   "x-event-msg": "No MSISDN Found",
   "result":{}
@@ -81,6 +83,7 @@ output application/json
 
 ---
 {
+  "x-event-id":	correlationId,	
   "x-event-code": 1999,
   "x-event-msg": "MSISDN successfully removed from whitelist"
 }
@@ -96,6 +99,7 @@ output application/json
 
 ---
 {
+  "x-event-id":	correlationId,	
   "x-event-code": 1005,
   "x-event-msg": "No MSISDN to be removed.",
   "result":{}
