@@ -24,15 +24,15 @@ http://www.mulesoft.org/schema/mule/tracing http://www.mulesoft.org/schema/mule/
 					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:name="Set Input" doc:id="be3c7165-1257-4179-a0a1-ee598cb8e3b3" >
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Input" doc:id="be3c7165-1257-4179-a0a1-ee598cb8e3b3">
 				<munit:payload value="#[readUrl('classpath://getwhitelistmsisdnsysmongodbapiconfigsuccesstest\set-event_payload.dwl')]" encoding="UTF-8" />
 				<munit:attributes value="#[readUrl('classpath://getwhitelistmsisdnsysmongodbapiconfigsuccesstest\set-event_attributes.dwl')]" />
-				<munit:variables >
+				<munit:variables>
 					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://getwhitelistmsisdnsysmongodbapiconfigsuccesstest\set-event_variable_.dwl')]" />
 				</munit:variables>
 			</munit:set-event>
-		</munit:behavior>
-		<munit:execution >
 			<tracing:with-correlation-id doc:name="With CorrelationID" doc:id="7c366020-0807-4278-8e48-056636ac1f64" correlationId='#["s12312312312312312"]'>
 				<flow-ref doc:name="Flow-ref to get:\whitelist\(msisdn):sys-mongodb-api-config" doc:id="edc37f31-c1b1-439e-aa62-39a5eeae93c1" name="get:\whitelist\(msisdn):sys-mongodb-api-config" />
 			</tracing:with-correlation-id>
@@ -66,15 +66,15 @@ assert_expression_payload::main({payload: payload, attributes: attributes, vars:
 					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:name="Set Input" doc:id="9f26b745-6028-462c-885c-6d0470222a0d" >
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Input" doc:id="9f26b745-6028-462c-885c-6d0470222a0d">
 				<munit:payload value="#[readUrl('classpath://deletewhitelistmsisdnsysmongodbapiconfigsuccesstest\set-event_payload.dwl')]" encoding="UTF-8" />
 				<munit:attributes value="#[readUrl('classpath://deletewhitelistmsisdnsysmongodbapiconfigsuccesstest\set-event_attributes.dwl')]" />
-				<munit:variables >
+				<munit:variables>
 					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://deletewhitelistmsisdnsysmongodbapiconfigsuccesstest\set-event_variable_.dwl')]" />
 				</munit:variables>
 			</munit:set-event>
-		</munit:behavior>
-		<munit:execution >
 			<tracing:with-correlation-id doc:name="With CorrelationID" doc:id="08076329-d1c5-4134-9f98-ab23b29d5cac" correlationId='#["s12312312312312312"]'>
 				<flow-ref doc:name="Flow-ref to delete:\whitelist\(msisdn):sys-mongodb-api-config" doc:id="40021265-0ca2-4179-8da4-4c2db5c81b07" name="delete:\whitelist\(msisdn):sys-mongodb-api-config" />
 			</tracing:with-correlation-id>

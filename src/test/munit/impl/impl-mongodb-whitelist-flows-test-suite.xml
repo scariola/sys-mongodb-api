@@ -16,15 +16,15 @@ http://www.mulesoft.org/schema/mule/tracing http://www.mulesoft.org/schema/mule/
 					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:id="744de4c4-1090-465f-a391-23022761d1bf" doc:name="Set Input">
-				<munit:payload encoding="UTF-8" value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_payload.dwl')]"/>
-				<munit:attributes value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_attributes.dwl')]"/>
-				<munit:variables>
-					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_variable_.dwl')]"/>
-				</munit:variables>
-			</munit:set-event>
 		</munit:behavior>
 		<munit:execution>
+			<munit:set-event doc:id="744de4c4-1090-465f-a391-23022761d1bf" doc:name="Set Input">
+				<munit:payload encoding="UTF-8" value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_payload.dwl')]" />
+				<munit:attributes value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_attributes.dwl')]" />
+				<munit:variables>
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_variable_.dwl')]" />
+				</munit:variables>
+			</munit:set-event>
 			<tracing:with-correlation-id doc:name="With CorrelationID" doc:id="827fdd5d-317f-41e8-9e67-b2599bff0a0a" correlationId='#["s12312312312312312"]'>
 				<flow-ref doc:id="21e3f7b9-a0f8-4e84-ac33-051121183c66" doc:name="Flow-ref to impl-get-whitelist-flow" name="impl-get-whitelist-flow" />
 			</tracing:with-correlation-id>
@@ -58,15 +58,15 @@ assert_expression_payload::main({payload: payload, attributes: attributes, vars:
 					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:id="795ea31f-4f20-4f34-b809-1c93eb61293a" doc:name="Set Input">
-				<munit:payload encoding="UTF-8" value="#[readUrl('classpath://msisdnmongodblookupflownomsisdnfoundtest\set-event_payload.dwl')]"/>
-				<munit:attributes value="#[readUrl('classpath://msisdnmongodblookupflownomsisdnfoundtest\set-event_attributes.dwl')]"/>
-				<munit:variables>
-					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://msisdnmongodblookupflownomsisdnfoundtest\set-event_variable_.dwl')]"/>
-				</munit:variables>
-			</munit:set-event>
 		</munit:behavior>
 		<munit:execution>
+			<munit:set-event doc:id="795ea31f-4f20-4f34-b809-1c93eb61293a" doc:name="Set Input">
+				<munit:payload encoding="UTF-8" value="#[readUrl('classpath://msisdnmongodblookupflownomsisdnfoundtest\set-event_payload.dwl')]" />
+				<munit:attributes value="#[readUrl('classpath://msisdnmongodblookupflownomsisdnfoundtest\set-event_attributes.dwl')]" />
+				<munit:variables>
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://msisdnmongodblookupflownomsisdnfoundtest\set-event_variable_.dwl')]" />
+				</munit:variables>
+			</munit:set-event>
 			<tracing:with-correlation-id doc:name="With CorrelationID" doc:id="353d6384-35d0-43a8-ba83-d63d6347c6fe" correlationId='#["s12312312312312312"]'>
 				<flow-ref doc:id="87589482-8b3b-4821-afca-71df3f08084f" doc:name="Flow-ref to impl-get-whitelist-flow" name="impl-get-whitelist-flow" />
 			</tracing:with-correlation-id>
@@ -100,15 +100,15 @@ assert_expression_payload::main({payload: payload, attributes: attributes, vars:
 					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:id="e05ebb23-4459-4f84-9300-721d90ed0b14" doc:name="Set Input">
-				<munit:payload encoding="UTF-8" value="#[readUrl('classpath://msisdnmongodbdeletionflowsuccesstest\set-event_payload.dwl')]"/>
-				<munit:attributes value="#[readUrl('classpath://msisdnmongodbdeletionflowsuccesstest\set-event_attributes.dwl')]"/>
-				<munit:variables>
-					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://msisdnmongodbdeletionflowsuccesstest\set-event_variable_.dwl')]"/>
-				</munit:variables>
-			</munit:set-event>
 		</munit:behavior>
 		<munit:execution>
+			<munit:set-event doc:id="e05ebb23-4459-4f84-9300-721d90ed0b14" doc:name="Set Input">
+				<munit:payload encoding="UTF-8" value="#[readUrl('classpath://msisdnmongodbdeletionflowsuccesstest\set-event_payload.dwl')]" />
+				<munit:attributes value="#[readUrl('classpath://msisdnmongodbdeletionflowsuccesstest\set-event_attributes.dwl')]" />
+				<munit:variables>
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://msisdnmongodbdeletionflowsuccesstest\set-event_variable_.dwl')]" />
+				</munit:variables>
+			</munit:set-event>
 			<tracing:with-correlation-id doc:name="With CorrelationID" doc:id="142d97e7-bb97-433a-9f1e-6ddc619b082a" correlationId='#["s12312312312312312"]'>
 				<flow-ref doc:id="fcc61481-8703-4317-a8c0-83104f6c4d9a" doc:name="Flow-ref to impl-get-whitelist-flow" name="impl-delete-whitelist-flow" />
 			</tracing:with-correlation-id>
@@ -142,15 +142,15 @@ assert_expression_payload::main({payload: payload, attributes: attributes, vars:
 					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:id="a6a39bd3-add5-4416-a692-7777f90edf15" doc:name="Set Input">
-				<munit:payload encoding="UTF-8" value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_payload.dwl')]"/>
-				<munit:attributes value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_attributes.dwl')]"/>
-				<munit:variables>
-					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_variable_.dwl')]"/>
-				</munit:variables>
-			</munit:set-event>
 		</munit:behavior>
 		<munit:execution>
+			<munit:set-event doc:id="a6a39bd3-add5-4416-a692-7777f90edf15" doc:name="Set Input">
+				<munit:payload encoding="UTF-8" value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_payload.dwl')]" />
+				<munit:attributes value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_attributes.dwl')]" />
+				<munit:variables>
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_variable_.dwl')]" />
+				</munit:variables>
+			</munit:set-event>
 			<tracing:with-correlation-id doc:name="With CorrelationID" doc:id="66dc706a-5f2a-49ff-8065-86e28fbf1afa" correlationId='#["s12312312312312312"]'>
 				<flow-ref doc:id="1bb4f4e8-646d-4da8-809b-412b3bf62805" doc:name="Flow-ref to impl-delete-whitelist-flow" name="impl-delete-whitelist-flow" />
 			</tracing:with-correlation-id>
@@ -184,15 +184,15 @@ assert_expression_payload::main({payload: payload, attributes: attributes, vars:
 					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:id="49458b75-7b41-42a0-ab77-103f386ca923" doc:name="Set Input">
-				<munit:payload encoding="UTF-8" value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_payload.dwl')]"/>
-				<munit:attributes value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_attributes.dwl')]"/>
-				<munit:variables>
-					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_variable_.dwl')]"/>
-				</munit:variables>
-			</munit:set-event>
 		</munit:behavior>
 		<munit:execution>
+			<munit:set-event doc:id="49458b75-7b41-42a0-ab77-103f386ca923" doc:name="Set Input">
+				<munit:payload encoding="UTF-8" value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_payload.dwl')]" />
+				<munit:attributes value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_attributes.dwl')]" />
+				<munit:variables>
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_variable_.dwl')]" />
+				</munit:variables>
+			</munit:set-event>
 			<try doc:id="2d10de5f-f47b-45cf-921f-2c8b7ef89bd3" doc:name="Try">
 				<flow-ref doc:id="76bff5e6-564a-489c-af27-dab3ec997272" doc:name="Flow-ref to impl-delete-whitelist-flow" name="impl-delete-whitelist-flow"/>
 				<error-handler>
@@ -226,15 +226,15 @@ assert_expression_payload::main({payload: payload, attributes: attributes, vars:
 					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:id="17bc4116-be39-4d59-b64f-dd3f12847532" doc:name="Set Input">
-				<munit:payload encoding="UTF-8" value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_payload.dwl')]"/>
-				<munit:attributes value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_attributes.dwl')]"/>
-				<munit:variables>
-					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_variable_.dwl')]"/>
-				</munit:variables>
-			</munit:set-event>
 		</munit:behavior>
 		<munit:execution>
+			<munit:set-event doc:id="17bc4116-be39-4d59-b64f-dd3f12847532" doc:name="Set Input">
+				<munit:payload encoding="UTF-8" value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_payload.dwl')]" />
+				<munit:attributes value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_attributes.dwl')]" />
+				<munit:variables>
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_variable_.dwl')]" />
+				</munit:variables>
+			</munit:set-event>
 			<try doc:id="ea956a53-0150-434a-84cc-f2d360261edc" doc:name="Try">
 				<flow-ref doc:id="c974fe8d-0d16-4196-a9d4-48a8795e9917" doc:name="Flow-ref to impl-delete-whitelist-flow" name="impl-delete-whitelist-flow"/>
 				<error-handler>
@@ -265,15 +265,15 @@ assert_expression_payload::main({payload: payload, attributes: attributes, vars:
 					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:id="49c168ff-bfb2-4df1-9e18-f89d1df610dd" doc:name="Set Input">
-				<munit:payload encoding="UTF-8" value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_payload.dwl')]"/>
-				<munit:attributes value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_attributes.dwl')]"/>
-				<munit:variables>
-					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_variable_.dwl')]"/>
-				</munit:variables>
-			</munit:set-event>
 		</munit:behavior>
 		<munit:execution>
+			<munit:set-event doc:id="49c168ff-bfb2-4df1-9e18-f89d1df610dd" doc:name="Set Input">
+				<munit:payload encoding="UTF-8" value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_payload.dwl')]" />
+				<munit:attributes value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_attributes.dwl')]" />
+				<munit:variables>
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_variable_.dwl')]" />
+				</munit:variables>
+			</munit:set-event>
 			<try doc:id="91daea36-fb00-4bbc-ab97-f195a73307f0" doc:name="Try">
 				<flow-ref doc:id="71d8a76c-d0bf-4776-b8df-f64e0a0ce3d5" doc:name="Flow-ref to impl-get-whitelist-flow" name="impl-get-whitelist-flow"/>
 				<error-handler>
@@ -307,15 +307,15 @@ assert_expression_payload::main({payload: payload, attributes: attributes, vars:
 					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:id="02925e8b-552b-4190-9683-27ad16e54c20" doc:name="Set Input">
-				<munit:payload encoding="UTF-8" value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_payload.dwl')]"/>
-				<munit:attributes value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_attributes.dwl')]"/>
-				<munit:variables>
-					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_variable_.dwl')]"/>
-				</munit:variables>
-			</munit:set-event>
 		</munit:behavior>
 		<munit:execution>
+			<munit:set-event doc:id="02925e8b-552b-4190-9683-27ad16e54c20" doc:name="Set Input">
+				<munit:payload encoding="UTF-8" value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_payload.dwl')]" />
+				<munit:attributes value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_attributes.dwl')]" />
+				<munit:variables>
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_variable_.dwl')]" />
+				</munit:variables>
+			</munit:set-event>
 			<try doc:id="bd6ee2f6-3331-455c-9d8e-4564c32c5039" doc:name="Try">
 				<flow-ref doc:id="72ef5184-036c-4f65-bf73-9fa2a7c3e4af" doc:name="Flow-ref to impl-get-whitelist-flow" name="impl-get-whitelist-flow"/>
 				<error-handler>
