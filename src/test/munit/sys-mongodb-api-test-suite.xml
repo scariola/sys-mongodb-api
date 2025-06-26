@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
-	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xsi:schemaLocation="
+<mule xmlns:tracing="http://www.mulesoft.org/schema/mule/tracing"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:munit="http://www.mulesoft.org/schema/mule/munit"
+	xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xsi:schemaLocation="
 		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
-		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd
+http://www.mulesoft.org/schema/mule/tracing http://www.mulesoft.org/schema/mule/tracing/current/mule-tracing.xsd">
 	<munit:config name="sys-mongodb-api-test-suite.xml" />
 	<munit:test name="get:\whitelist\(msisdn):sys-mongodb-api-config-success-test" doc:id="b30b0718-49c2-42d3-9c66-e14c84ba190b" >
 		<munit:behavior >
@@ -32,7 +33,9 @@
 			</munit:set-event>
 		</munit:behavior>
 		<munit:execution >
-			<flow-ref doc:name="Flow-ref to get:\whitelist\(msisdn):sys-mongodb-api-config" doc:id="edc37f31-c1b1-439e-aa62-39a5eeae93c1" name="get:\whitelist\(msisdn):sys-mongodb-api-config"/>
+			<tracing:with-correlation-id doc:name="With CorrelationID" doc:id="7c366020-0807-4278-8e48-056636ac1f64" correlationId='#["s12312312312312312"]'>
+				<flow-ref doc:name="Flow-ref to get:\whitelist\(msisdn):sys-mongodb-api-config" doc:id="edc37f31-c1b1-439e-aa62-39a5eeae93c1" name="get:\whitelist\(msisdn):sys-mongodb-api-config" />
+			</tracing:with-correlation-id>
 		</munit:execution>
 		<munit:validation >
 			<munit-tools:assert doc:name="Assert payload" doc:id="2a720683-7a3d-4d95-b35e-1931bcb609f5" message="The payload does not match">
@@ -48,7 +51,7 @@ assert_expression_payload::main({payload: payload, attributes: attributes, vars:
 			</munit-tools:verify-call>
 		</munit:validation>
 	</munit:test>
-	<munit:test name="delete:\whitelist\(msisdn):sys-mongodb-api-config-success-test" doc:id="65701333-d047-4be4-9974-29e142abaee2" >
+	<munit:test name="delete:\whitelist\(msisdn):sys-mongodb-api-config-success-test" doc:id="65701333-d047-4be4-9974-29e142abaee2">
 		<munit:behavior >
 			<munit-tools:mock-when doc:name="Mock flow ref to msisdn-mongodb-deletion-flow" doc:id="b680dbd5-40b0-4722-8971-8cd17216b931" processor="flow-ref">
 				<munit-tools:with-attributes >
@@ -72,7 +75,9 @@ assert_expression_payload::main({payload: payload, attributes: attributes, vars:
 			</munit:set-event>
 		</munit:behavior>
 		<munit:execution >
-			<flow-ref doc:name="Flow-ref to delete:\whitelist\(msisdn):sys-mongodb-api-config" doc:id="40021265-0ca2-4179-8da4-4c2db5c81b07" name="delete:\whitelist\(msisdn):sys-mongodb-api-config"/>
+			<tracing:with-correlation-id doc:name="With CorrelationID" doc:id="08076329-d1c5-4134-9f98-ab23b29d5cac" correlationId='#["s12312312312312312"]'>
+				<flow-ref doc:name="Flow-ref to delete:\whitelist\(msisdn):sys-mongodb-api-config" doc:id="40021265-0ca2-4179-8da4-4c2db5c81b07" name="delete:\whitelist\(msisdn):sys-mongodb-api-config" />
+			</tracing:with-correlation-id>
 		</munit:execution>
 		<munit:validation >
 			<munit-tools:assert doc:name="Assert payload" doc:id="445b4079-eaa4-45b4-8338-534b2848f563" message="The payload does not match">

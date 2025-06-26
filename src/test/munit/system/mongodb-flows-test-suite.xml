@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="   http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd   http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd   http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="mongodb-flows-test-suite.xml"/>
+	<munit:test doc:id="e888168f-c30f-4e79-a192-e5f6afa84768" name="find-msisdn-subflow-success-test">
+		<munit:behavior>
+			<munit-tools:mock-when doc:id="ba2855ec-4991-42ca-9fd2-fd842e909465" doc:name="Mock find-msisdn-subflow" processor="mongo:find-documents">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute attributeName="doc:id" whereValue="1bd03298-99d6-4afc-b444-2900b3687252"/>
+				</munit-tools:with-attributes>
+				<munit-tools:then-return>
+					<munit-tools:payload encoding="UTF-8" mediaType="application/java" value="#[output application/java --- readUrl('classpath://findmsisdnwhitelistsubflowsuccesstest\mock_payload.dwl')]"/>
+					<munit-tools:variables>
+						<munit-tools:variable key="outboundHeaders" value="#[readUrl('classpath://findmsisdnwhitelistsubflowsuccesstest\mock_variable_.dwl')]"/>
+						<munit-tools:variable encoding="UTF-8" key="collection" mediaType="application/json" value="#[output application/json --- readUrl('classpath://findmsisdnwhitelistsubflowsuccesstest\mock_variable_1.dwl')]"/>
+						<munit-tools:variable encoding="UTF-8" key="msisdn" mediaType="application/json" value="#[output application/json --- readUrl('classpath://findmsisdnwhitelistsubflowsuccesstest\mock_variable_2.dwl')]"/>
+					</munit-tools:variables>
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit:set-event doc:id="142b30c0-29a6-4557-9d69-8fde52d03438" doc:name="Set Input">
+				<munit:payload encoding="UTF-8" value="#[readUrl('classpath://findmsisdnwhitelistsubflowsuccesstest\set-event_payload.dwl')]"/>
+				<munit:attributes value="#[readUrl('classpath://findmsisdnwhitelistsubflowsuccesstest\set-event_attributes.dwl')]"/>
+				<munit:variables>
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://findmsisdnwhitelistsubflowsuccesstest\set-event_variable_.dwl')]"/>
+					<munit:variable encoding="UTF-8" key="collection" mediaType="application/json" value="#[output application/json --- readUrl('classpath://findmsisdnwhitelistsubflowsuccesstest\set-event_variable_1.dwl')]"/>
+					<munit:variable encoding="UTF-8" key="msisdn" mediaType="application/json" value="#[output application/json --- readUrl('classpath://findmsisdnwhitelistsubflowsuccesstest\set-event_variable_2.dwl')]"/>
+				</munit:variables>
+			</munit:set-event>
+		</munit:behavior>
+		<munit:execution>
+			<flow-ref doc:id="b44c941f-426e-43df-8779-99e97df7c6f4" doc:name="Flow-ref to find-msisdn-subflow" name="find-msisdn-subflow"/>
+		</munit:execution>
+		<munit:validation>
+			<munit-tools:assert doc:id="7008e3e7-a161-4781-85eb-01a3c718ede4" doc:name="Assert payload" message="The payload does not match">
+				<munit-tools:that><![CDATA[#[%dw 2.0
+import findmsisdnwhitelistsubflowsuccesstest::assert_expression_payload
+---
+assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
+			</munit-tools:assert>
+			<munit-tools:verify-call doc:id="3d9a4411-5517-4988-968b-7daccf7e9091" doc:name="Verify END - MSISDN MongoDB Lookup" processor="logger" times="1">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute attributeName="doc:id" whereValue="b16b97c0-e99d-4e17-b552-6fb8942f2f1b"/>
+				</munit-tools:with-attributes>
+			</munit-tools:verify-call>
+		</munit:validation>
+	</munit:test>
+	<munit:test doc:id="520aefc8-a3a4-46aa-8f6d-ca01d8b8a341" name="remove-msisdn-subflow-success-test">
+		<munit:behavior>
+			<munit-tools:mock-when doc:id="1cfb7a5f-a07a-4af3-a71b-6576383fd07a" doc:name="Mock remove-msisdn-subflow" processor="mongo:remove-documents">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute attributeName="doc:id" whereValue="63fe7140-0eea-46b4-99ce-1848b41f1893"/>
+				</munit-tools:with-attributes>
+				<munit-tools:then-return>
+					<munit-tools:payload encoding="UTF-8" mediaType="application/java" value="#[output application/java --- readUrl('classpath://removemsisdnwhitelistsuccesstest\mock_payload1.dwl')]"/>
+					<munit-tools:variables>
+						<munit-tools:variable key="outboundHeaders" value="#[readUrl('classpath://removemsisdnwhitelistsuccesstest\mock_variable_3.dwl')]"/>
+						<munit-tools:variable encoding="UTF-8" key="collection" mediaType="application/json" value="#[output application/json --- readUrl('classpath://removemsisdnwhitelistsuccesstest\mock_variable_4.dwl')]"/>
+						<munit-tools:variable encoding="UTF-8" key="msisdn" mediaType="application/json" value="#[output application/json --- readUrl('classpath://removemsisdnwhitelistsuccesstest\mock_variable_5.dwl')]"/>
+					</munit-tools:variables>
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit:set-event doc:id="6ab65775-9b89-4e3b-860c-b922e243ed56" doc:name="Set Input">
+				<munit:payload encoding="UTF-8" value="#[readUrl('classpath://removemsisdnwhitelistsuccesstest\set-event_payload1.dwl')]"/>
+				<munit:attributes value="#[readUrl('classpath://removemsisdnwhitelistsuccesstest\set-event_attributes1.dwl')]"/>
+				<munit:variables>
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://removemsisdnwhitelistsuccesstest\set-event_variable_3.dwl')]"/>
+					<munit:variable encoding="UTF-8" key="collection" mediaType="application/json" value="#[output application/json --- readUrl('classpath://removemsisdnwhitelistsuccesstest\set-event_variable_4.dwl')]"/>
+					<munit:variable encoding="UTF-8" key="msisdn" mediaType="application/json" value="#[output application/json --- readUrl('classpath://removemsisdnwhitelistsuccesstest\set-event_variable_5.dwl')]"/>
+				</munit:variables>
+			</munit:set-event>
+		</munit:behavior>
+		<munit:execution>
+			<flow-ref doc:id="97ffa319-6f4e-48d2-a32c-58a9224efe54" doc:name="Flow-ref to remove-msisdn-subflow" name="remove-msisdn-subflow"/>
+		</munit:execution>
+		<munit:validation>
+			<munit-tools:assert doc:id="063d2611-8009-4ba9-a228-2d8f5e84ab3b" doc:name="Assert payload" message="The payload does not match">
+				<munit-tools:that><![CDATA[#[%dw 2.0
+import removemsisdnwhitelistsuccesstest::assert_expression_payload1
+---
+assert_expression_payload1::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
+			</munit-tools:assert>
+			<munit-tools:verify-call doc:id="e0e54081-31e6-424a-ae1c-e8a091e67d1e" doc:name="Verify END - Remove MSISDN Whitelist" processor="logger" times="1">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute attributeName="doc:id" whereValue="72ded4e9-1eee-4e93-a839-5e650a2cefed"/>
+				</munit-tools:with-attributes>
+			</munit-tools:verify-call>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
