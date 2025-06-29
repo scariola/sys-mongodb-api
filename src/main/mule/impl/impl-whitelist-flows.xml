@@ -10,7 +10,7 @@
 http://www.mulesoft.org/schema/mule/mongodb http://www.mulesoft.org/schema/mule/mongodb/current/mule-mongodb.xsd
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
 http://www.mulesoft.org/schema/mule/mongo http://www.mulesoft.org/schema/mule/mongo/current/mule-mongo.xsd">
-	<flow name="get-whitelist-flow"
+	<flow name="imlp-get-whitelist-flow"
 		doc:id="1c205b9f-711e-4ddf-8336-0083bf0f19ea">
 		<logger level="INFO" doc:name="START - Process MSISDN Whitelist Lookup" doc:id="bf98ef58-6d9e-47a0-94b7-918a459b11f4" message="#['START - Process MSISDN Whitelist Lookup using: ' ++ attributes.uriParams.'msisdn']"/>
 		<ee:transform doc:name="var - msisdn, collection" doc:id="dd618608-40ad-4107-93ae-321ad82d6ff5">
@@ -64,7 +64,7 @@ output application/json
 		<logger level="INFO" doc:name="END - Process MSISDN Whitelist Lookup" doc:id="bf682ed4-f855-4b11-a7ab-a5418208c2c3" message="#['END - Process MSISDN Whitelist Lookup| Found:' ++ if (payload.&quot;x-event-msg&quot; == 'Success') true else false]"/>
 		<error-handler ref="sys-mongodb-api_Shared_Error_Handler" />
 	</flow>
-	<flow name="delete-whitelist-flow" doc:id="84c5d7cf-cf42-400e-acb5-049ec72782bf" >
+	<flow name="imlp-delete-whitelist-flow" doc:id="84c5d7cf-cf42-400e-acb5-049ec72782bf" >
 		<logger level="INFO" doc:name="START - Process MSISDN Removable" doc:id="075e0673-0efe-4801-a748-9f1c13977a14" message="#['START - Process MSISDN Removable using: ' ++ attributes.uriParams.'msisdn']"/>
 		<ee:transform doc:name="var - msisdn, collection" doc:id="2bce87b0-4e53-49bc-9808-8af6aa95fbb7" >
 			<ee:message />
