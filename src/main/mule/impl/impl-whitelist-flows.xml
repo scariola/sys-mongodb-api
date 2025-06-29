@@ -10,7 +10,7 @@
 http://www.mulesoft.org/schema/mule/mongodb http://www.mulesoft.org/schema/mule/mongodb/current/mule-mongodb.xsd
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
 http://www.mulesoft.org/schema/mule/mongo http://www.mulesoft.org/schema/mule/mongo/current/mule-mongo.xsd">
-	<flow name="msisdn-mongodb-lookup-flow"
+	<flow name="get-whitelist-flow"
 		doc:id="1c205b9f-711e-4ddf-8336-0083bf0f19ea">
 		<logger level="INFO" doc:name="START - Process MSISDN Whitelist Lookup" doc:id="bf98ef58-6d9e-47a0-94b7-918a459b11f4" message="#['START - Process MSISDN Whitelist Lookup using: ' ++ attributes.uriParams.'msisdn']"/>
 		<ee:transform doc:name="var - msisdn, collection" doc:id="dd618608-40ad-4107-93ae-321ad82d6ff5">
@@ -21,7 +21,7 @@ http://www.mulesoft.org/schema/mule/mongo http://www.mulesoft.org/schema/mule/mo
 				<ee:set-variable resource="dw/var-msisdn-collection.dwl" variableName="collection" />
 			</ee:variables>
 		</ee:transform>
-		<flow-ref doc:name="find-msisdn-whitelist-subflow" doc:id="e8f15840-d402-4a5d-8c36-3ec76c5e0a38" name="find-msisdn-whitelist-subflow" />
+		<flow-ref doc:name="find-msisdn-whitelist-subflow" doc:id="e8f15840-d402-4a5d-8c36-3ec76c5e0a38" name="find-msisdn-subflow" />
 		<choice doc:name="CONTAINS msisdn?" doc:id="7a4a01b9-417e-4fc8-bd9d-c982df69aaf8" >
 			<when expression="#[sizeOf(payload) &gt; 0]">
 				<ee:transform doc:name="Mongo DB Response TO API response(msisdn found)" doc:id="3ac1be0e-5ada-4131-b822-b1de8004e69c">
@@ -64,7 +64,7 @@ output application/json
 		<logger level="INFO" doc:name="END - Process MSISDN Whitelist Lookup" doc:id="bf682ed4-f855-4b11-a7ab-a5418208c2c3" message="#['END - Process MSISDN Whitelist Lookup| Found:' ++ if (payload.&quot;x-event-msg&quot; == 'Success') true else false]"/>
 		<error-handler ref="sys-mongodb-api_Shared_Error_Handler" />
 	</flow>
-	<flow name="msisdn-mongodb-deletion-flow" doc:id="84c5d7cf-cf42-400e-acb5-049ec72782bf" >
+	<flow name="delete-whitelist-flow" doc:id="84c5d7cf-cf42-400e-acb5-049ec72782bf" >
 		<logger level="INFO" doc:name="START - Process MSISDN Removable" doc:id="075e0673-0efe-4801-a748-9f1c13977a14" message="#['START - Process MSISDN Removable using: ' ++ attributes.uriParams.'msisdn']"/>
 		<ee:transform doc:name="var - msisdn, collection" doc:id="2bce87b0-4e53-49bc-9808-8af6aa95fbb7" >
 			<ee:message />
@@ -73,7 +73,7 @@ output application/json
 				<ee:set-variable resource="dw/var-msisdn-collection.dwl" variableName="collection" />
 			</ee:variables>
 		</ee:transform>
-		<flow-ref doc:name="remove-msisdn-whitelist" doc:id="0b5a0a73-c9b2-4e86-8e9c-7a543d057442" name="remove-msisdn-whitelist" />
+		<flow-ref doc:name="remove-msisdn-whitelist" doc:id="0b5a0a73-c9b2-4e86-8e9c-7a543d057442" name="remove-msisdn-subflow" />
 		<choice doc:name="IS successful?" doc:id="76616100-eacb-48f7-8e44-4a677815df80" >
 			<when expression="#[payload == 1]">
 				<ee:transform doc:name="Mongo DB Response TO API response(deletion success)" doc:id="35483c0d-e736-494b-8b99-70e742d16414">

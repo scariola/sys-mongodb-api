@@ -38,23 +38,18 @@
 					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:name="Set Input"
-				doc:id="744de4c4-1090-465f-a391-23022761d1bf">
-				<munit:payload
-					value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_payload.dwl')]"
-					encoding="UTF-8" />
-				<munit:attributes
-					value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_attributes.dwl')]" />
-				<munit:variables>
-					<munit:variable key="outboundHeaders"
-						value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_variable_.dwl')]" />
-				</munit:variables>
-			</munit:set-event>
 		</munit:behavior>
 		<munit:execution>
+			<munit:set-event doc:name="Set Input" doc:id="744de4c4-1090-465f-a391-23022761d1bf">
+				<munit:payload value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_payload.dwl')]" encoding="UTF-8" />
+				<munit:attributes value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_attributes.dwl')]" />
+				<munit:variables>
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_variable_.dwl')]" />
+				</munit:variables>
+			</munit:set-event>
 			<flow-ref doc:name="Flow-ref to msisdn-mongodb-lookup-flow"
 				doc:id="21e3f7b9-a0f8-4e84-ac33-051121183c66"
-				name="msisdn-mongodb-lookup-flow" />
+				name="get-whitelist-flow" />
 		</munit:execution>
 		<munit:validation>
 			<munit-tools:assert doc:name="Assert payload"
@@ -105,23 +100,18 @@ assert_expression_payload::main({payload: payload, attributes: attributes, vars:
 					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:name="Set Input"
-				doc:id="795ea31f-4f20-4f34-b809-1c93eb61293a">
-				<munit:payload
-					value="#[readUrl('classpath://msisdnmongodblookupflownomsisdnfoundtest\set-event_payload.dwl')]"
-					encoding="UTF-8" />
-				<munit:attributes
-					value="#[readUrl('classpath://msisdnmongodblookupflownomsisdnfoundtest\set-event_attributes.dwl')]" />
-				<munit:variables>
-					<munit:variable key="outboundHeaders"
-						value="#[readUrl('classpath://msisdnmongodblookupflownomsisdnfoundtest\set-event_variable_.dwl')]" />
-				</munit:variables>
-			</munit:set-event>
 		</munit:behavior>
 		<munit:execution>
-			<flow-ref doc:name="Flow-ref to msisdn-mongodb-lookup-flow"
+			<munit:set-event doc:name="Set Input" doc:id="795ea31f-4f20-4f34-b809-1c93eb61293a">
+				<munit:payload value="#[readUrl('classpath://msisdnmongodblookupflownomsisdnfoundtest\set-event_payload.dwl')]" encoding="UTF-8" />
+				<munit:attributes value="#[readUrl('classpath://msisdnmongodblookupflownomsisdnfoundtest\set-event_attributes.dwl')]" />
+				<munit:variables>
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://msisdnmongodblookupflownomsisdnfoundtest\set-event_variable_.dwl')]" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get-whitelist-flow"
 				doc:id="87589482-8b3b-4821-afca-71df3f08084f"
-				name="msisdn-mongodb-lookup-flow" />
+				name="get-whitelist-flow" />
 		</munit:execution>
 		<munit:validation>
 			<munit-tools:assert doc:name="Assert payload"
@@ -171,24 +161,19 @@ assert_expression_payload::main({payload: payload, attributes: attributes, vars:
 					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:name="Set Input"
-				doc:id="e05ebb23-4459-4f84-9300-721d90ed0b14">
-				<munit:payload
-					value="#[readUrl('classpath://msisdnmongodbdeletionflowsuccesstest\set-event_payload.dwl')]"
-					encoding="UTF-8" />
-				<munit:attributes
-					value="#[readUrl('classpath://msisdnmongodbdeletionflowsuccesstest\set-event_attributes.dwl')]" />
-				<munit:variables>
-					<munit:variable key="outboundHeaders"
-						value="#[readUrl('classpath://msisdnmongodbdeletionflowsuccesstest\set-event_variable_.dwl')]" />
-				</munit:variables>
-			</munit:set-event>
 		</munit:behavior>
 		<munit:execution>
+			<munit:set-event doc:name="Set Input" doc:id="e05ebb23-4459-4f84-9300-721d90ed0b14">
+				<munit:payload value="#[readUrl('classpath://msisdnmongodbdeletionflowsuccesstest\set-event_payload.dwl')]" encoding="UTF-8" />
+				<munit:attributes value="#[readUrl('classpath://msisdnmongodbdeletionflowsuccesstest\set-event_attributes.dwl')]" />
+				<munit:variables>
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://msisdnmongodbdeletionflowsuccesstest\set-event_variable_.dwl')]" />
+				</munit:variables>
+			</munit:set-event>
 			<flow-ref
-				doc:name="Flow-ref to msisdn-mongodb-deletion-flow"
+				doc:name="Flow-ref to delete-whitelist-flow"
 				doc:id="fcc61481-8703-4317-a8c0-83104f6c4d9a"
-				name="msisdn-mongodb-deletion-flow" />
+				name="delete-whitelist-flow" />
 		</munit:execution>
 		<munit:validation>
 			<munit-tools:assert doc:name="Assert payload"
@@ -239,24 +224,19 @@ assert_expression_payload::main({payload: payload, attributes: attributes, vars:
 					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:name="Set Input"
-				doc:id="a6a39bd3-add5-4416-a692-7777f90edf15">
-				<munit:payload
-					value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_payload.dwl')]"
-					encoding="UTF-8" />
-				<munit:attributes
-					value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_attributes.dwl')]" />
-				<munit:variables>
-					<munit:variable key="outboundHeaders"
-						value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_variable_.dwl')]" />
-				</munit:variables>
-			</munit:set-event>
 		</munit:behavior>
 		<munit:execution>
+			<munit:set-event doc:name="Set Input" doc:id="a6a39bd3-add5-4416-a692-7777f90edf15">
+				<munit:payload value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_payload.dwl')]" encoding="UTF-8" />
+				<munit:attributes value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_attributes.dwl')]" />
+				<munit:variables>
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_variable_.dwl')]" />
+				</munit:variables>
+			</munit:set-event>
 			<flow-ref
-				doc:name="Flow-ref to msisdn-mongodb-deletion-flow"
+				doc:name="Flow-ref to delete-whitelist-flow"
 				doc:id="1bb4f4e8-646d-4da8-809b-412b3bf62805"
-				name="msisdn-mongodb-deletion-flow" />
+				name="delete-whitelist-flow" />
 		</munit:execution>
 		<munit:validation>
 			<munit-tools:assert doc:name="Assert payload"
@@ -294,6 +274,8 @@ assert_expression_payload::main({payload: payload, attributes: attributes, vars:
 					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
 			<munit:set-event doc:name="Set Input" doc:id="49458b75-7b41-42a0-ab77-103f386ca923">
 				<munit:payload value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_payload.dwl')]" encoding="UTF-8" />
 				<munit:attributes value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_attributes.dwl')]" />
@@ -301,10 +283,8 @@ assert_expression_payload::main({payload: payload, attributes: attributes, vars:
 					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_variable_.dwl')]" />
 				</munit:variables>
 			</munit:set-event>
-		</munit:behavior>
-		<munit:execution>
 			<try doc:name="Try" doc:id="2d10de5f-f47b-45cf-921f-2c8b7ef89bd3">
-				<flow-ref doc:name="Flow-ref to msisdn-mongodb-deletion-flow" doc:id="76bff5e6-564a-489c-af27-dab3ec997272" name="msisdn-mongodb-deletion-flow" />
+				<flow-ref doc:name="Flow-ref to delete-whitelist-flow" doc:id="76bff5e6-564a-489c-af27-dab3ec997272" name="delete-whitelist-flow" />
 				<error-handler>
 					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="caa2940e-bdb9-4639-828f-ab0e08aa3171">
 						<logger level="INFO" doc:name="Logger" doc:id="6fac9202-0469-43aa-9661-217b000e4432" message="delete mongo  Connectivty Error" />
@@ -336,17 +316,17 @@ assert_expression_payload::main({payload: payload, attributes: attributes, vars:
 					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:name="Set Input" doc:id="17bc4116-be39-4d59-b64f-dd3f12847532" >
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Input" doc:id="17bc4116-be39-4d59-b64f-dd3f12847532">
 				<munit:payload value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_payload.dwl')]" encoding="UTF-8" />
 				<munit:attributes value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_attributes.dwl')]" />
-				<munit:variables >
+				<munit:variables>
 					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://msisdnmongodbdeletionflownomsisdntodeletetest\set-event_variable_.dwl')]" />
 				</munit:variables>
 			</munit:set-event>
-		</munit:behavior>
-		<munit:execution >
 			<try doc:name="Try" doc:id="ea956a53-0150-434a-84cc-f2d360261edc" >
-				<flow-ref doc:name="Flow-ref to msisdn-mongodb-deletion-flow" doc:id="c974fe8d-0d16-4196-a9d4-48a8795e9917" name="msisdn-mongodb-deletion-flow" />
+				<flow-ref doc:name="Flow-ref to msisdndelete-whitelist-flow" doc:id="c974fe8d-0d16-4196-a9d4-48a8795e9917" name="delete-whitelist-flow" />
 				<error-handler >
 					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="319607c8-14fe-4e02-9903-f3def6cac3d8" >
 						<logger level="INFO" doc:name="Logger" doc:id="997e6a63-0876-45fd-81cc-496f46aea6cf" message="delete mongodb any error" />
@@ -375,6 +355,8 @@ assert_expression_payload::main({payload: payload, attributes: attributes, vars:
 					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
 			<munit:set-event doc:name="Set Input" doc:id="49c168ff-bfb2-4df1-9e18-f89d1df610dd">
 				<munit:payload value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_payload.dwl')]" encoding="UTF-8" />
 				<munit:attributes value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_attributes.dwl')]" />
@@ -382,10 +364,8 @@ assert_expression_payload::main({payload: payload, attributes: attributes, vars:
 					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_variable_.dwl')]" />
 				</munit:variables>
 			</munit:set-event>
-		</munit:behavior>
-		<munit:execution>
 			<try doc:name="Try" doc:id="91daea36-fb00-4bbc-ab97-f195a73307f0" >
-				<flow-ref doc:name="Flow-ref to msisdn-mongodb-lookup-flow" doc:id="71d8a76c-d0bf-4776-b8df-f64e0a0ce3d5" name="msisdn-mongodb-lookup-flow" />
+				<flow-ref doc:name="Flow-ref to get-whitelist-flow" doc:id="71d8a76c-d0bf-4776-b8df-f64e0a0ce3d5" name="get-whitelist-flow" />
 				<error-handler >
 					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="fdc3efff-b3cf-4316-a277-e852659e13a6" >
 						<logger level="INFO" doc:name="Logger" doc:id="13f97fcf-26b1-4a19-b539-b6e379552789" message="lookup mongodb connectivity error"/>
@@ -417,17 +397,17 @@ assert_expression_payload::main({payload: payload, attributes: attributes, vars:
 					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:name="Set Input" doc:id="02925e8b-552b-4190-9683-27ad16e54c20" >
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Input" doc:id="02925e8b-552b-4190-9683-27ad16e54c20">
 				<munit:payload value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_payload.dwl')]" encoding="UTF-8" />
 				<munit:attributes value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_attributes.dwl')]" />
-				<munit:variables >
+				<munit:variables>
 					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://msisdnmongodblookupflowsuccesstest\set-event_variable_.dwl')]" />
 				</munit:variables>
 			</munit:set-event>
-		</munit:behavior>
-		<munit:execution >
 			<try doc:name="Try" doc:id="bd6ee2f6-3331-455c-9d8e-4564c32c5039" >
-				<flow-ref doc:name="Flow-ref to msisdn-mongodb-lookup-flow" doc:id="72ef5184-036c-4f65-bf73-9fa2a7c3e4af" name="msisdn-mongodb-lookup-flow" />
+				<flow-ref doc:name="Flow-ref to get-whitelist-flow" doc:id="72ef5184-036c-4f65-bf73-9fa2a7c3e4af" name="get-whitelist-flow" />
 				<error-handler >
 					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="fbb804d4-628b-4e1f-842c-93e641c1b0a1" >
 						<logger level="INFO" doc:name="Logger" doc:id="41ed9820-ac4c-4954-9dde-800d65627a3f" message="lookup mongodb any error"/>

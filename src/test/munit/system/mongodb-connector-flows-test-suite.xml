@@ -23,18 +23,18 @@
 					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:name="Set Input" doc:id="142b30c0-29a6-4557-9d69-8fde52d03438" >
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Input" doc:id="142b30c0-29a6-4557-9d69-8fde52d03438">
 				<munit:payload value="#[readUrl('classpath://findmsisdnwhitelistsubflowsuccesstest\set-event_payload.dwl')]" encoding="UTF-8" />
 				<munit:attributes value="#[readUrl('classpath://findmsisdnwhitelistsubflowsuccesstest\set-event_attributes.dwl')]" />
-				<munit:variables >
+				<munit:variables>
 					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://findmsisdnwhitelistsubflowsuccesstest\set-event_variable_.dwl')]" />
 					<munit:variable key="collection" value="#[output application/json --- readUrl('classpath://findmsisdnwhitelistsubflowsuccesstest\set-event_variable_1.dwl')]" encoding="UTF-8" mediaType="application/json" />
 					<munit:variable key="msisdn" value="#[output application/json --- readUrl('classpath://findmsisdnwhitelistsubflowsuccesstest\set-event_variable_2.dwl')]" encoding="UTF-8" mediaType="application/json" />
 				</munit:variables>
 			</munit:set-event>
-		</munit:behavior>
-		<munit:execution >
-			<flow-ref doc:name="Flow-ref to find-msisdn-whitelist-subflow" doc:id="b44c941f-426e-43df-8779-99e97df7c6f4" name="find-msisdn-whitelist-subflow"/>
+			<flow-ref doc:name="Flow-ref to find-msisdn-subflow" doc:id="b44c941f-426e-43df-8779-99e97df7c6f4" name="find-msisdn-subflow"/>
 		</munit:execution>
 		<munit:validation >
 			<munit-tools:assert doc:name="Assert payload" doc:id="7008e3e7-a161-4781-85eb-01a3c718ede4" message="The payload does not match">
@@ -65,18 +65,18 @@ assert_expression_payload::main({payload: payload, attributes: attributes, vars:
 					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
-			<munit:set-event doc:name="Set Input" doc:id="6ab65775-9b89-4e3b-860c-b922e243ed56" >
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Input" doc:id="6ab65775-9b89-4e3b-860c-b922e243ed56">
 				<munit:payload value="#[readUrl('classpath://removemsisdnwhitelistsuccesstest\set-event_payload1.dwl')]" encoding="UTF-8" />
 				<munit:attributes value="#[readUrl('classpath://removemsisdnwhitelistsuccesstest\set-event_attributes1.dwl')]" />
-				<munit:variables >
+				<munit:variables>
 					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://removemsisdnwhitelistsuccesstest\set-event_variable_3.dwl')]" />
 					<munit:variable key="collection" value="#[output application/json --- readUrl('classpath://removemsisdnwhitelistsuccesstest\set-event_variable_4.dwl')]" encoding="UTF-8" mediaType="application/json" />
 					<munit:variable key="msisdn" value="#[output application/json --- readUrl('classpath://removemsisdnwhitelistsuccesstest\set-event_variable_5.dwl')]" encoding="UTF-8" mediaType="application/json" />
 				</munit:variables>
 			</munit:set-event>
-		</munit:behavior>
-		<munit:execution >
-			<flow-ref doc:name="Flow-ref to remove-msisdn-whitelist" doc:id="97ffa319-6f4e-48d2-a32c-58a9224efe54" name="remove-msisdn-whitelist"/>
+			<flow-ref doc:name="Flow-ref to remove-msisdn-subflow" doc:id="97ffa319-6f4e-48d2-a32c-58a9224efe54" name="remove-msisdn-subflow"/>
 		</munit:execution>
 		<munit:validation >
 			<munit-tools:assert doc:name="Assert payload" doc:id="063d2611-8009-4ba9-a228-2d8f5e84ab3b" message="The payload does not match">
