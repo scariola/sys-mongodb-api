@@ -24,11 +24,7 @@ http://www.mulesoft.org/schema/mule/tracing http://www.mulesoft.org/schema/mule/
 						attributeName="doc:id" />
 				</munit-tools:with-attributes>
 				<munit-tools:then-return >
-					<munit-tools:payload value="#[output application/java ---readUrl('classpath://dw/mocks/payload-whitelist-found.dwl')]" mediaType="application/java" encoding="UTF-8" />
-					<munit-tools:variables >
-						<munit-tools:variable key="collection" value="#[output application/json ---readUrl('classpath://dw/mocks/var-collection.dwl')]" mediaType="application/json" encoding="UTF-8" />
-						<munit-tools:variable key="msisdn" value="#[output application/json ---readUrl('classpath://dw/mocks/var-msisdn.dwl')]" mediaType="application/json" encoding="UTF-8" />
-					</munit-tools:variables>
+					<munit-tools:payload value="#[output application/java ---readUrl('classpath://dw/mocks/payload-mongodb-found.dwl')]" mediaType="application/java" encoding="UTF-8" />
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
 		</munit:behavior>
@@ -82,11 +78,7 @@ payload must equalTo({
 						attributeName="doc:id" />
 				</munit-tools:with-attributes>
 				<munit-tools:then-return >
-					<munit-tools:payload value="#[output application/java --- readUrl('classpath://dw/mocks/payload-whitelist-not-found.dwl')]" mediaType="application/java" encoding="UTF-8" />
-					<munit-tools:variables >
-						<munit-tools:variable key="collection" value="#[output application/json ---readUrl('classpath://dw/mocks/var-collection.dwl')]" mediaType="application/json" encoding="UTF-8" />
-						<munit-tools:variable key="msisdn" value="#[output application/json ---readUrl('classpath://dw/mocks/var-msisdn.dwl')]" mediaType="application/json" encoding="UTF-8" />
-					</munit-tools:variables>
+					<munit-tools:payload value="#[output application/java --- readUrl('classpath://dw/mocks/payload-mongodb-not-found.dwl')]" mediaType="application/java" encoding="UTF-8" />
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
 		</munit:behavior>
@@ -107,7 +99,7 @@ import * from dw::test::Asserts
 ---
 payload must equalTo({
   "x-event-id": "91034975-4a2f-4477-8766-d24d8b90fe0e",	
-  "x-event-code": 1005,
+  "x-event-code": 9005,
   "x-event-msg": "No MSISDN Found",
   "result": {}
 })]]]></munit-tools:that>
@@ -137,10 +129,6 @@ payload must equalTo({
 				</munit-tools:with-attributes>
 				<munit-tools:then-return >
 					<munit-tools:payload value="#[1]" mediaType="application/java" encoding="UTF-8" />
-					<munit-tools:variables >
-						<munit-tools:variable key="collection" value="#[output application/json ---readUrl('classpath://dw/mocks/var-collection.dwl')]" mediaType="application/json" encoding="UTF-8" />
-						<munit-tools:variable key="msisdn" value="#[output application/json ---readUrl('classpath://dw/mocks/var-msisdn.dwl')]" mediaType="application/json" encoding="UTF-8" />
-					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
 		</munit:behavior>
@@ -190,11 +178,7 @@ payload must equalTo({
 						attributeName="doc:id" />
 				</munit-tools:with-attributes>
 				<munit-tools:then-return >
-					<munit-tools:payload value="#[output application/java --- readUrl('classpath://dw/mocks/payload-whitelist-not-found.dwl')]" mediaType="application/java" encoding="UTF-8" />
-					<munit-tools:variables >
-						<munit-tools:variable key="collection" value="#[output application/json ---readUrl('classpath://dw/mocks/var-collection.dwl')]" mediaType="application/json" encoding="UTF-8" />
-						<munit-tools:variable key="msisdn" value="#[output application/json ---readUrl('classpath://dw/mocks/var-msisdn.dwl')]" mediaType="application/json" encoding="UTF-8" />
-					</munit-tools:variables>
+					<munit-tools:payload value="#[output application/java --- readUrl('classpath://dw/mocks/payload-mongodb-not-found.dwl')]" mediaType="application/java" encoding="UTF-8" />
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
 		</munit:behavior>
@@ -215,7 +199,7 @@ import * from dw::test::Asserts
 ---
 payload must equalTo({
   "x-event-id": "91034975-4a2f-4477-8766-d24d8b90fe0e",		
-  "x-event-code": 1005,
+  "x-event-code": 9005,
   "x-event-msg": "No MSISDN to be removed.",
   "result": {}
 })]]]></munit-tools:that>
@@ -240,10 +224,6 @@ payload must equalTo({
 				</munit-tools:with-attributes>
 				<munit-tools:then-return >
 					<munit-tools:error typeId="MONGO:CONNECTIVITY" />
-					<munit-tools:variables >
-						<munit-tools:variable key="collection" value="#[output application/json ---readUrl('classpath://dw/mocks/var-collection.dwl')]" mediaType="application/json" encoding="UTF-8" />
-						<munit-tools:variable key="msisdn" value="#[output application/json ---readUrl('classpath://dw/mocks/var-msisdn.dwl')]" mediaType="application/json" encoding="UTF-8" />
-					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
 		</munit:behavior>
@@ -277,10 +257,6 @@ payload must equalTo({
 				</munit-tools:with-attributes>
 				<munit-tools:then-return >
 					<munit-tools:error typeId="ANY" />
-					<munit-tools:variables >
-						<munit-tools:variable key="collection" value="#[output application/json ---readUrl('classpath://dw/mocks/var-collection.dwl')]" mediaType="application/json" encoding="UTF-8" />
-						<munit-tools:variable key="msisdn" value="#[output application/json ---readUrl('classpath://dw/mocks/var-msisdn.dwl')]" mediaType="application/json" encoding="UTF-8" />
-					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
 		</munit:behavior>
@@ -311,10 +287,6 @@ payload must equalTo({
 				</munit-tools:with-attributes>
 				<munit-tools:then-return >
 					<munit-tools:error typeId="MONGO:CONNECTIVITY" />
-					<munit-tools:variables >
-						<munit-tools:variable key="collection" value="#[output application/json ---readUrl('classpath://dw/mocks/var-collection.dwl')]" mediaType="application/json" encoding="UTF-8" />
-						<munit-tools:variable key="msisdn" value="#[output application/json ---readUrl('classpath://dw/mocks/var-msisdn.dwl')]" mediaType="application/json" encoding="UTF-8" />
-					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
 		</munit:behavior>
@@ -348,10 +320,6 @@ payload must equalTo({
 				</munit-tools:with-attributes>
 				<munit-tools:then-return >
 					<munit-tools:error typeId="MULE:ANY" />
-					<munit-tools:variables >
-						<munit-tools:variable key="collection" value="#[output application/json ---readUrl('classpath://dw/mocks/var-collection.dwl')]" mediaType="application/json" encoding="UTF-8" />
-						<munit-tools:variable key="msisdn" value="#[output application/json ---readUrl('classpath://dw/mocks/var-msisdn.dwl')]" mediaType="application/json" encoding="UTF-8" />
-					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
 		</munit:behavior>

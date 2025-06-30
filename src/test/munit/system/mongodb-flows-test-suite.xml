@@ -15,11 +15,7 @@
 					<munit-tools:with-attribute whereValue="1bd03298-99d6-4afc-b444-2900b3687252" attributeName="doc:id" />
 				</munit-tools:with-attributes>
 				<munit-tools:then-return >
-					<munit-tools:payload value="#[output application/java ---readUrl('classpath://dw/mocks/payload-whitelist-found.dwl')]" mediaType="application/java" encoding="UTF-8" />
-					<munit-tools:variables >
-						<munit-tools:variable key="collection" value="#[output application/json ---readUrl('classpath://dw/mocks/var-collection.dwl')]" mediaType="application/json" encoding="UTF-8" />
-						<munit-tools:variable key="msisdn" value="#[output application/json ---readUrl('classpath://dw/mocks/var-msisdn.dwl')]" mediaType="application/json" encoding="UTF-8" />
-					</munit-tools:variables>
+					<munit-tools:payload value="#[output application/java ---readUrl('classpath://dw/mocks/payload-mongodb-found.dwl')]" mediaType="application/java" encoding="UTF-8" />
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
 		</munit:behavior>
@@ -31,7 +27,7 @@
 					<munit:variable key="msisdn" value="#[output application/json ---readUrl('classpath://dw/mocks/var-msisdn.dwl')]" encoding="UTF-8" mediaType="application/json" />
 				</munit:variables>
 			</munit:set-event>
-			<flow-ref doc:name="Flow-ref to find-msisdn-subflow" doc:id="b44c941f-426e-43df-8779-99e97df7c6f4" name="find-msisdn-subflow"/>
+			<flow-ref doc:name="Flow-ref to mongodb-find-msisdn-subflow" doc:id="b44c941f-426e-43df-8779-99e97df7c6f4" name="mongodb-find-subflow"/>
 		</munit:execution>
 		<munit:validation >
 			<munit-tools:assert doc:name="Assert payload" doc:id="7008e3e7-a161-4781-85eb-01a3c718ede4" message="The payload does not match">
@@ -63,10 +59,6 @@ payload must equalTo([
 				</munit-tools:with-attributes>
 				<munit-tools:then-return >
 					<munit-tools:payload value="#[1]" mediaType="application/java" encoding="UTF-8" />
-					<munit-tools:variables >
-						<munit-tools:variable key="collection" value="#[output application/json ---readUrl('classpath://dw/mocks/var-collection.dwl')]" mediaType="application/json" encoding="UTF-8" />
-						<munit-tools:variable key="msisdn" value="#[output application/json ---readUrl('classpath://dw/mocks/var-msisdn.dwl')]" mediaType="application/json" encoding="UTF-8" />
-					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
 		</munit:behavior>
@@ -78,7 +70,7 @@ payload must equalTo([
 					<munit:variable key="msisdn" value="#[output application/json ---readUrl('classpath://dw/mocks/var-msisdn.dwl')]" encoding="UTF-8" mediaType="application/json" />
 				</munit:variables>
 			</munit:set-event>
-			<flow-ref doc:name="Flow-ref to remove-msisdn-subflow" doc:id="97ffa319-6f4e-48d2-a32c-58a9224efe54" name="remove-msisdn-subflow"/>
+			<flow-ref doc:name="Flow-ref to mongodb-remove-msisdn-subflow" doc:id="97ffa319-6f4e-48d2-a32c-58a9224efe54" name="mongodb-remove-subflow"/>
 		</munit:execution>
 		<munit:validation >
 			<munit-tools:assert doc:name="Assert payload" doc:id="063d2611-8009-4ba9-a228-2d8f5e84ab3b" message="The payload does not match">

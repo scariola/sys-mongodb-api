@@ -17,10 +17,6 @@ http://www.mulesoft.org/schema/mule/tracing http://www.mulesoft.org/schema/mule/
 				</munit-tools:with-attributes>
 				<munit-tools:then-return >
 					<munit-tools:payload value="#[output application/json --- readUrl('classpath://dw/mocks/get-whitelist-response.dwl')]" mediaType="application/json" encoding="UTF-8" />
-					<munit-tools:variables >
-						<munit-tools:variable key="collection" value="#[output application/json ---readUrl('classpath://dw/mocks/var-collection.dwl')]" mediaType="application/json" encoding="UTF-8" />
-						<munit-tools:variable key="msisdn" value="#[output application/json ---readUrl('classpath://dw/mocks/var-msisdn.dwl')]" mediaType="application/json" encoding="UTF-8" />
-					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
 		</munit:behavior>
@@ -62,10 +58,6 @@ payload must equalTo({
 				</munit-tools:with-attributes>
 				<munit-tools:then-return >
 					<munit-tools:payload value="#[output application/json --- readUrl('classpath://dw/mocks/delete-whitelist-response.dwl')]" mediaType="application/json" encoding="UTF-8" />
-					<munit-tools:variables >
-						<munit-tools:variable key="collection" value="#[output application/json ---readUrl('classpath://dw/mocks/var-collection.dwl')]" mediaType="application/json" encoding="UTF-8" />
-						<munit-tools:variable key="msisdn" value="#[output application/json ---readUrl('classpath://dw/mocks/var-msisdn.dwl')]" mediaType="application/json" encoding="UTF-8" />
-					</munit-tools:variables>
 				</munit-tools:then-return>
 			</munit-tools:mock-when>
 		</munit:behavior>
