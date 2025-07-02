@@ -94,7 +94,7 @@ output application/json
 ---
 {
   "x-event-id":	correlationId,	
-  "x-event-code": 9010,
+  "x-event-code": 9401,
   "x-event-msg": "Cannot connect to mongodb at the moment",
   "result":{
   	"errorType": error.errorType.namespace ++ ":" ++ error.errorType.identifier,

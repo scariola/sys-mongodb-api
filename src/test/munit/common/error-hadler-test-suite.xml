@@ -8,7 +8,7 @@
 		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
 		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
 	<munit:config name="error-hadler-test-suite.xml" />
-	<munit:test name="sys-mongodb-api-main-apikit-bad-request-test" doc:id="20247509-bd4e-4fb4-b695-56d8e57e85fd" >
+	<munit:test name="sys-mongodb-api-main-apikit-bad-request-test" doc:id="20247509-bd4e-4fb4-b695-56d8e57e85fd">
 		<munit:behavior>
 			<munit-tools:mock-when doc:name="Mock sys-mongodb-api-main-api-router" doc:id="c05c5a86-0122-41c0-83e1-8cf29c88ddd1" processor="apikit:router">
 				<munit-tools:with-attributes >
@@ -30,7 +30,7 @@
 			</try>
 		</munit:execution>
 		<munit:validation >
-			<munit-tools:assert-that doc:name="Assert api kit bad request" doc:id="744e3b57-05cb-454d-9643-47d4e7ff2ae7" is="#[MunitTools::equalTo('APIKIT:BAD_REQUEST')]" expression="#[payload.result.errorType]"/>
+			<munit-tools:assert-that doc:name="Assert api kit bad request" doc:id="744e3b57-05cb-454d-9643-47d4e7ff2ae7" is="#[MunitTools::equalTo('APIKIT:BAD_REQUEST')]" expression="#[payload.result.'error-type']"/>
 			<munit-tools:verify-call doc:name="Verify Call httpStatus 400" doc:id="d4e9f8ab-34cb-401e-8bbc-84a6c4bfb705" processor="set-variable" times="1">
 				<munit-tools:with-attributes >
 					<munit-tools:with-attribute whereValue="400" attributeName="value" />
@@ -60,7 +60,7 @@
 			</try>
 		</munit:execution>
 		<munit:validation >
-			<munit-tools:assert-that doc:name="Assert api kit not found" doc:id="deb19227-5979-448c-ab2f-ed2be92aa244" is="#[MunitTools::equalTo('APIKIT:NOT_FOUND')]" expression="#[payload.result.errorType]" />
+			<munit-tools:assert-that doc:name="Assert api kit not found" doc:id="deb19227-5979-448c-ab2f-ed2be92aa244" is="#[MunitTools::equalTo('APIKIT:NOT_FOUND')]" expression="#[payload.result.'error-type']" />
 			<munit-tools:verify-call doc:name="Verify Call httpStatus 404" doc:id="ff99c19e-76c6-4db3-9116-a3ef05cdc843" processor="set-variable" times="1" >
 				<munit-tools:with-attributes >
 					<munit-tools:with-attribute whereValue="404" attributeName="value" />
@@ -68,7 +68,7 @@
 			</munit-tools:verify-call>
 		</munit:validation>
 	</munit:test>
-	<munit:test name="sys-mongodb-api-main-apikit-method-not-allowed-test" doc:id="acadd6a0-a6c5-40e4-9725-4a256137ca33" >
+	<munit:test name="sys-mongodb-api-main-apikit-method-not-allowed-test" doc:id="acadd6a0-a6c5-40e4-9725-4a256137ca33">
 		<munit:behavior >
 			<munit-tools:mock-when doc:name="Mock sys-mongodb-api-main-api-router" doc:id="10630ca9-6af1-4534-968c-cbae1e055a49" processor="apikit:router" >
 				<munit-tools:with-attributes >
@@ -90,7 +90,7 @@
 			</try>
 		</munit:execution>
 		<munit:validation >
-			<munit-tools:assert-that doc:name="Assert api kit method not allowed" doc:id="c597ee94-4791-4991-8681-32a6bffe19a3" expression="#[payload.result.errorType]" is="#[MunitTools::equalTo('APIKIT:METHOD_NOT_ALLOWED')]" />
+			<munit-tools:assert-that doc:name="Assert api kit method not allowed" doc:id="c597ee94-4791-4991-8681-32a6bffe19a3" expression="#[payload.result.'error-type']" is="#[MunitTools::equalTo('APIKIT:METHOD_NOT_ALLOWED')]" />
 			<munit-tools:verify-call doc:name="Verify Call httpStatus 405" doc:id="e85b1204-8392-4640-b77d-38066ee67bc1" processor="set-variable" times="1" >
 				<munit-tools:with-attributes >
 					<munit-tools:with-attribute whereValue="405" attributeName="value" />
@@ -98,7 +98,7 @@
 			</munit-tools:verify-call>
 		</munit:validation>
 	</munit:test>
-	<munit:test name="sys-mongodb-api-main-apikit-not-accepted-test" doc:id="23500227-05ea-4d8c-81a0-a9f0f7bbfba7" >
+	<munit:test name="sys-mongodb-api-main-apikit-not-accepted-test" doc:id="23500227-05ea-4d8c-81a0-a9f0f7bbfba7">
 		<munit:behavior >
 			<munit-tools:mock-when doc:name="Mock sys-mongodb-api-main-api-router" doc:id="f472b59a-0fb2-477d-bc1f-a7f9c91878a3" processor="apikit:router" >
 				<munit-tools:with-attributes >
@@ -120,7 +120,7 @@
 			</try>
 		</munit:execution>
 		<munit:validation >
-			<munit-tools:assert-that doc:name="Assert api kit not accepted" doc:id="d4b2dbd2-104f-49be-bbaf-0061e20f4d53" expression="#[payload.result.errorType]" is="#[MunitTools::equalTo('APIKIT:NOT_ACCEPTABLE')]" />
+			<munit-tools:assert-that doc:name="Assert api kit not accepted" doc:id="d4b2dbd2-104f-49be-bbaf-0061e20f4d53" expression="#[payload.result.'error-type']" is="#[MunitTools::equalTo('APIKIT:NOT_ACCEPTABLE')]" />
 			<munit-tools:verify-call doc:name="Verify Call httpStatus 406" doc:id="bb8a61fa-4283-41ad-9390-3d64d9e0502d" processor="set-variable" times="1" >
 				<munit-tools:with-attributes >
 					<munit-tools:with-attribute whereValue="406" attributeName="value" />
@@ -150,7 +150,7 @@
 			</try>
 		</munit:execution>
 		<munit:validation>
-			<munit-tools:assert-that doc:name="Assert api kit not accepted" doc:id="fb6a958f-83c4-4f9b-a768-7087888932b3" expression="#[payload.result.errorType]" is="#[MunitTools::equalTo('APIKIT:UNSUPPORTED_MEDIA_TYPE')]" />
+			<munit-tools:assert-that doc:name="Assert api kit not accepted" doc:id="fb6a958f-83c4-4f9b-a768-7087888932b3" expression="#[payload.result.'error-type']" is="#[MunitTools::equalTo('APIKIT:UNSUPPORTED_MEDIA_TYPE')]" />
 			<munit-tools:verify-call doc:name="Verify Call httpStatus 415" doc:id="cd52cba2-3268-414b-b785-7a1b405b4cea" processor="set-variable" times="1">
 				<munit-tools:with-attributes>
 					<munit-tools:with-attribute whereValue="415" attributeName="value" />
@@ -158,7 +158,7 @@
 			</munit-tools:verify-call>
 		</munit:validation>
 	</munit:test>
-	<munit:test name="sys-mongodb-api-main-apikit-not-implemented-test" doc:id="5008a665-91be-40c2-abb9-fd04c19dab62" >
+	<munit:test name="sys-mongodb-api-main-apikit-not-implemented-test" doc:id="5008a665-91be-40c2-abb9-fd04c19dab62">
 		<munit:behavior >
 			<munit-tools:mock-when doc:name="Mock sys-mongodb-api-main-api-router" doc:id="12c59fd1-41a5-4e46-b3b0-accd686830c8" processor="apikit:router" >
 				<munit-tools:with-attributes >
@@ -180,7 +180,7 @@
 			</try>
 		</munit:execution>
 		<munit:validation >
-			<munit-tools:assert-that doc:name="Assert api kit not accepted" doc:id="83a5fece-e15b-4e0f-893c-dfbe4611cbe1" expression="#[payload.result.errorType]" is="#[MunitTools::equalTo('APIKIT:NOT_IMPLEMENTED')]" />
+			<munit-tools:assert-that doc:name="Assert api kit not accepted" doc:id="83a5fece-e15b-4e0f-893c-dfbe4611cbe1" expression="#[payload.result.'error-type']" is="#[MunitTools::equalTo('APIKIT:NOT_IMPLEMENTED')]" />
 			<munit-tools:verify-call doc:name="Verify Call httpStatus 501" doc:id="7a3c8332-2aeb-4382-833b-d3ccb8ea6171" processor="set-variable" times="1" >
 				<munit-tools:with-attributes >
 					<munit-tools:with-attribute whereValue="501" attributeName="value" />

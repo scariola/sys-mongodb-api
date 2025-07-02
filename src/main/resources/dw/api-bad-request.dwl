@@ -3,10 +3,10 @@ output application/json
 ---
 {
   "x-event-id":	correlationId,
-  "x-event-code": 9010,
+  "x-event-code": 9402,
   "x-event-msg": "Bad request",
   "result":{
-  	"errorType": error.errorType.namespace ++ ":" ++ error.errorType.identifier,
-    "errorDescription": error.detailedDescription
+  	"error-type": error.errorType.namespace ++ ":" ++ error.errorType.identifier,
+    "error-description": error.detailedDescription
   }
 }
