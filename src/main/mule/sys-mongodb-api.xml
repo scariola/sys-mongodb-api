@@ -32,7 +32,7 @@
 			message="START: get:\whitelist\(msisdn)-Initiating MongoDB request" />
 		<flow-ref doc:name="imlp-get-whitelist-flow"
 			doc:id="6500c66e-657b-45c4-ba83-0e1ba9b122ba"
-			name="imlp-get-whitelist-flow" />
+			name="imlp-get-bonus-flow" />
 		<logger level="INFO" doc:name="END - GET  /whitelist/(msisdn)"
 			doc:id="a88a5f01-c1f0-4043-a3ff-e9ab47ca9a01"
 			message="#['END: get:\whitelist\(msisdn)-Subscriber document ' ++ if (payload.&quot;x-event-msg&quot; == 'Success') &quot;retrieved!&quot; else &quot;not found.&quot;]" />
@@ -44,7 +44,7 @@
 			message="START: delete:\whitelist\(msisdn)-Initiating MongoDB request" />
 		<flow-ref doc:name="imlp-delete-whitelist-flow"
 			doc:id="4d6fa309-124d-441b-97f1-ae5a909d7561"
-			name="imlp-delete-whitelist-flow" />
+			name="imlp-delete-bonus-flow" />
 		<logger level="INFO"
 			doc:name="END - DELETE /whitelist/(msisdn)"
 			doc:id="c163ae67-fbcd-443f-a4ce-553406b3cc76"

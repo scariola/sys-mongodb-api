@@ -163,9 +163,9 @@
 			<classifier>mule-plugin</classifier>
 		</dependency>
 		<dependency>
-			<groupId>19504067-e1e3-45dd-943a-e163098ddbed</groupId>
+			<groupId>871a7b19-9f3e-4dbd-8ef4-09253a8ba1dc</groupId>
 			<artifactId>sys-mongodb-api</artifactId>
-			<version>1.0.9</version>
+			<version>1.0.0</version>
 			<classifier>raml</classifier>
 			<type>zip</type>
 		</dependency>

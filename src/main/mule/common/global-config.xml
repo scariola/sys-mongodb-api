@@ -35,7 +35,7 @@ http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/m
 			port="${http.port}" />
 	</http:listener-config>
 	<apikit:config name="sys-mongodb-api-config"
-		api="resource::19504067-e1e3-45dd-943a-e163098ddbed:sys-mongodb-api:1.0.9:raml:zip:sys-mongodb-api.raml"
+		api="resource::871a7b19-9f3e-4dbd-8ef4-09253a8ba1dc:sys-mongodb-api:1.0.0:raml:zip:sys-mongodb-api.raml"
 		outboundHeadersMapName="outboundHeaders"
 		httpStatusVarName="httpStatus" />
 	<mongo:config name="MongoDB_Config"
