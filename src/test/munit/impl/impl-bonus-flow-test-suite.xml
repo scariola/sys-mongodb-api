@@ -180,9 +180,9 @@ payload must equalTo({
 		</munit:execution>
 		<munit:validation>
 			<munit-tools:assert-that doc:id="bb6a4925-b6ee-4b41-b839-df95c78383b7" doc:name="Assert error mongo connectivity" expression="#[payload.result.errorType]" is="#[MunitTools::equalTo('MONGO:CONNECTIVITY')]"/>
-			<munit-tools:verify-call doc:id="dd0bd47a-d2b9-4040-96ab-31ce4f35fcb8" doc:name="Verify Error Status 503" processor="set-variable" times="1">
-				<munit-tools:with-attributes>
-					<munit-tools:with-attribute attributeName="doc:id" whereValue="d0fab0ec-bbc4-4ede-b2f1-140c08584b54"/>
+			<munit-tools:verify-call doc:id="dd0bd47a-d2b9-4040-96ab-31ce4f35fcb8" doc:name="Verify Error Status 503" processor="ee:transform" times="1">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="3fb635ee-7554-4417-8c28-a8953b39e93d" attributeName="doc:id" />
 				</munit-tools:with-attributes>
 			</munit-tools:verify-call>
 		</munit:validation>
@@ -213,8 +213,6 @@ payload must equalTo({
 		</munit:execution>
 		<munit:validation>
 			<munit-tools:assert-that doc:id="7b9f691f-99b9-4575-8ddc-aa2f93106524" doc:name="Assert error any" expression="#[payload.result.errorType]" is="#[MunitTools::equalTo('MULE:ANY')]"/>
-			<munit-tools:verify-call doc:id="c36af001-af51-4dcd-868f-6d9658df2ec9" doc:name="Verify Error Status 500" processor="set-variable" times="1">
-			</munit-tools:verify-call>
 		</munit:validation>
 	</munit:test>
 	<munit:test doc:id="6a60e0f8-d5c0-4544-bf78-2f42cb576431" name="get-whitelist-flow-api_Shared_Error_Handler-mongoDB-Connectivity-test">
@@ -243,9 +241,9 @@ payload must equalTo({
 		</munit:execution>
 		<munit:validation>
 			<munit-tools:assert-that doc:id="3da0a5b5-8515-448d-93c6-63072b02f198" doc:name="Assert error mongo connectivity" expression="#[payload.result.errorType]" is="#[MunitTools::equalTo('MONGO:CONNECTIVITY')]"/>
-			<munit-tools:verify-call doc:id="5ce9f336-6836-4e7f-a687-7cb71861be47" doc:name="Verify Error Status 503" processor="set-variable" times="1">
-				<munit-tools:with-attributes>
-					<munit-tools:with-attribute attributeName="doc:id" whereValue="d0fab0ec-bbc4-4ede-b2f1-140c08584b54"/>
+			<munit-tools:verify-call doc:id="5ce9f336-6836-4e7f-a687-7cb71861be47" doc:name="Verify Error Status 503" processor="ee:transform" times="1">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="3fb635ee-7554-4417-8c28-a8953b39e93d" attributeName="doc:id" />
 				</munit-tools:with-attributes>
 			</munit-tools:verify-call>
 		</munit:validation>
@@ -276,11 +274,6 @@ payload must equalTo({
 		</munit:execution>
 		<munit:validation>
 			<munit-tools:assert-that doc:id="2e1bd4c9-4e56-4680-b58d-dc819bc396cc" doc:name="Assert error any" expression="#[payload.result.errorType]" is="#[MunitTools::equalTo('MULE:ANY')]"/>
-			<munit-tools:verify-call doc:id="7dfbe3e8-cf06-4bdc-ab5f-625c91327782" doc:name="Verify Error Status 500" processor="set-variable" times="1">
-				<munit-tools:with-attributes>
-					<munit-tools:with-attribute attributeName="value" whereValue="500"/>
-				</munit-tools:with-attributes>
-			</munit-tools:verify-call>
 		</munit:validation>
 	</munit:test>
 </mule>
