@@ -51,7 +51,7 @@ payload must equalTo([
 			</munit-tools:verify-call>
 		</munit:validation>
 	</munit:test>
-	<munit:test name="remove-msisdn-success-test" doc:id="520aefc8-a3a4-46aa-8f6d-ca01d8b8a341" >
+	<munit:test name="remove-msisdn-success-test" doc:id="520aefc8-a3a4-46aa-8f6d-ca01d8b8a341">
 		<munit:behavior >
 			<munit-tools:mock-when doc:name="Mock Remove MSISDN" doc:id="1cfb7a5f-a07a-4af3-a71b-6576383fd07a" processor="mongo:remove-documents">
 				<munit-tools:with-attributes >

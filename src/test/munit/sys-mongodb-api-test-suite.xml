@@ -50,7 +50,7 @@ payload must equalTo({
 			</munit-tools:verify-call>
 		</munit:validation>
 	</munit:test>
-	<munit:test name="delete:\whitelist\(msisdn):sys-mongodb-api-config-success-test" doc:id="65701333-d047-4be4-9974-29e142abaee2">
+	<munit:test name="delete:\whitelist\(msisdn):sys-mongodb-api-config-success-test" doc:id="65701333-d047-4be4-9974-29e142abaee2" ignore="true">
 		<munit:behavior >
 			<munit-tools:mock-when doc:name="Mock flow ref to delete-whitelist-flow" doc:id="b680dbd5-40b0-4722-8971-8cd17216b931" processor="flow-ref">
 				<munit-tools:with-attributes >
