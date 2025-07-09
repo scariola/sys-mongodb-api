@@ -11,7 +11,7 @@
 		name="sys-mongodb-api_APIKIT_Error_Handler">
 
 		<on-error-propagate type="APIKIT:BAD_REQUEST">
-			<ee:transform doc:name="Set Payload - Bad Request">
+			<ee:transform doc:name="Set Payload - Bad Request,var-httpStatus">
 				<ee:message>
 					<ee:set-payload resource="dw/api-bad-request.dwl" />
 				</ee:message>
@@ -23,7 +23,7 @@
 		</on-error-propagate>
 
 		<on-error-propagate type="APIKIT:NOT_FOUND">
-			<ee:transform doc:name="Set Payload - Not Found">
+			<ee:transform doc:name="Set Payload - Not Found,var-httpStatus">
 				<ee:message>
 					<ee:set-payload resource="dw/api-not-found.dwl" />
 				</ee:message>
@@ -37,7 +37,7 @@
 		<on-error-propagate
 			type="APIKIT:METHOD_NOT_ALLOWED">
 			<ee:transform
-				doc:name="Set Payload - Method Not Allowed">
+				doc:name="Set Payload - Method Not Allowed,var-httpStatus">
 				<ee:message>
 					<ee:set-payload
 						resource="dw/api-method-not-allowed.dwl" />
@@ -50,7 +50,7 @@
 		</on-error-propagate>
 
 		<on-error-propagate type="APIKIT:NOT_ACCEPTABLE">
-			<ee:transform doc:name="Set  Payload - Not Acceptable">
+			<ee:transform doc:name="Set  Payload - Not Acceptablevar-httpStatus">
 				<ee:message>
 					<ee:set-payload resource="dw/api-not-acceptable.dwl" />
 				</ee:message>
@@ -64,7 +64,7 @@
 		<on-error-propagate
 			type="APIKIT:UNSUPPORTED_MEDIA_TYPE">
 			<ee:transform
-				doc:name="Set Payload - Unsupported Media Type">
+				doc:name="Set Payload - Unsupported Media Type,var-httpStatus">
 				<ee:message>
 					<ee:set-payload
 						resource="dw/api-unsupported-media-type.dwl" />
@@ -77,7 +77,7 @@
 		</on-error-propagate>
 
 		<on-error-propagate type="APIKIT:NOT_IMPLEMENTED">
-			<ee:transform doc:name="Set Payload - Not Implemented">
+			<ee:transform doc:name="Set Payload - Not Implemented,var-httpStatus">
 				<ee:message>
 					<ee:set-payload
 						resource="dw/api-not-implemented.dwl" />
@@ -98,7 +98,7 @@
 			doc:id="ed64358f-f774-49bd-ab0f-e71879345a7e"
 			type="MONGO:CONNECTIVITY">
 			<ee:transform
-				doc:name="Set Payload - Mongo Connectivity"
+				doc:name="Set Payload - Mongo Connectivity,var-httpStatus"
 				doc:id="3fb635ee-7554-4417-8c28-a8953b39e93d">
 				<ee:message>
 					<ee:set-payload
@@ -112,7 +112,7 @@
 		</on-error-propagate>
 		<on-error-propagate type="ANY" logException="true"
 			enableNotifications="true">
-			<ee:transform doc:name="Set Payload - Any Occured">
+			<ee:transform doc:name="Set Payload - Any Occured,var-httpStatus">
 				<ee:message>
 					<ee:set-payload
 						resource="dw/unexpected-system-error.dwl" />
